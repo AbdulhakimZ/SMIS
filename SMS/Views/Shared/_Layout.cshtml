@@ -1,0 +1,154 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="HandheldFriendly" content="true" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - Student Management System</title>
+
+    <script src="~/Content/plugins/jquery/jquery.min.js"></script>
+    <!--AdminLte-->
+    <link rel="stylesheet" href="~/Content/plugins/dist/css/adminlte.css" />
+    <script type="text/javascript" src="~/Content/js/adminlte.min.js"></script>
+    <!--DataTable-->
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/bs4-4.1.1/jq-3.3.1/jszip-2.5.0/dt-1.10.18/b-1.5.6/b-flash-1.5.6/b-html5-1.5.6/b-print-1.5.6/r-2.2.2/datatables.min.css" />
+
+    <script type="text/javascript" src="https://cdn.datatables.net/v/bs4-4.1.1/jq-3.3.1/jszip-2.5.0/dt-1.10.18/b-1.5.6/b-flash-1.5.6/b-html5-1.5.6/b-print-1.5.6/r-2.2.2/datatables.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="~/Scripts/DataTable/datatables.min.css" />
+    <script type="text/javascript" src="~/Scripts/DataTable/datatables.min.js"></script>
+    <link rel="stylesheet" href="~/Content/plugins/fontawesome-free/css/all.min.css" />
+    <!-- Ionicons -->
+    <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css" />
+    <!--CSS-->
+    <link rel="stylesheet" href="~/Content/css/_all-skins.min.css" />
+    <!--JS-->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    @*<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>*@
+    <script src="~/Content/plugins/bootstrap/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="~/Content/js/jquery-ui.min.js"></script>
+    <script type="text/javascript" src="~/Scripts/jquery.validate.js"></script>
+    <script type="text/javascript" src="~/Scripts/jquery.validate.unobtrusive.js"></script>
+    <link href="~/Content/Chosen/chosen.min.css" rel="stylesheet" />
+    <script type="text/javascript" src="~/Content/Chosen/chosen.jquery.min.js"></script>
+
+    <style type="text/css">
+        .rows {
+            padding-top: 40px;
+            padding-left: 20px;
+        }
+    </style>
+
+    <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet" />
+
+</head>
+<body class="hold-transition sidebar-mini layout-fixed">
+    <div class="wrapper">
+
+        <nav class="main-header navbar navbar-expand navbar-dark navbar-light">
+            <!-- Left navbar links -->
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a class="nav-link" data-widget="pushmenu" href="#"><i class="fas fa-bars"></i></a>
+                    <span class="sr-only">Toggle navigation</span>
+                </li>
+                <li class="nav-item d-none d-sm-inline-block">
+                    <a href="/Home/Index" class="nav-link">Home</a>
+                </li>
+                @*<li class="nav-item d-none d-sm-inline-block">
+                    <a href="#" class="nav-link">Contact</a>
+                </li>*@
+            </ul>
+            @*
+                <!-- SEARCH FORM -->
+                <form class="form-inline ml-3">
+                    <div class="input-group input-group-sm">
+                        <input class="form-control form-control-navbar" type="search" placeholder="Search" aria-label="Search">
+                        <div class="input-group-append">
+                            <button class="btn btn-navbar" type="submit">
+                                <i class="fas fa-search"></i>
+                            </button>
+                        </div>
+                    </div>
+                </form>
+            *@
+            <!-- Right navbar links -->
+            <ul class="navbar-nav ml-auto">
+                <!-- Messages Dropdown Menu -->
+                <li class="nav-item dropdown">
+                    <a class="nav-link" data-toggle="dropdown">
+                        <i class="far fa-comments"></i>
+                        <a href="/Messages/Index"> <span class="badge badge-danger navbar-badge">@Session["unRead"]</span></a>
+                    </a>
+                </li>
+
+                <li class="nav-item dropdown">
+                    <a class="nav-link" data-toggle="dropdown" href="#">
+                        <div class="image user-panel">
+                            @{
+                                if (Session["Photo"] != null)
+                                {
+                                    <img src='~/@Session["Photo"]' class="img-circle" alt="User Image" />
+                                }
+                                else
+                                {
+                                    <img src="~/Content/images/default.png" class="img-circle" alt="User Image" />
+                                }
+                            }
+                        </div>
+                    </a>
+                    <div class="dropdown-menu navbar-dark dropdown-menu-lg dropdown-menu-right">
+                        <span style="color:white;" class="dropdown-item dropdown-header">@Session["Name"]</span>
+                        <p style="color:whitesmoke;" class="dropdown-item">
+                            @Session["RoleName"]
+                        </p>
+                        <div class="dropdown-divider"></div>
+                        <a href="#" class="dropdown-item float-right">
+                            @Html.ActionLink("Sign Out", "LogOff", "Account", null, new { @class = "btn btn-danger" })<i class="fa fa-sign-out"></i>
+                        </a>
+                    </div>
+                </li>
+            </ul>
+        </nav>
+
+        <aside class="main-sidebar sidebar-dark-primary elevation-4">
+            <!-- Brand Logo -->
+            <a href="index3.html" class="brand-link">
+                <span class="brand-text font-weight-light">@Session["RoleName"]</span>
+            </a>
+            @{
+                //  int sessionId = Convert.ToInt32(Session["Role"]);
+                if (Session["Role"] != null)
+                {
+                    Html.RenderAction("SideMenu", "MenuItems");
+
+                }
+                else
+                {
+                    <h1>Please Login First</h1>
+                }
+            }
+        </aside>
+
+        <div class="content-wrapper">
+            <div style="margin-left:2%">
+                @RenderBody()
+            </div>
+
+        </div>
+    </div>
+    @RenderSection("scripts", required: false)
+    <footer class="main-footer">
+        @{ 
+            string year = DateTime.Now.ToString("yyyy");
+        }
+        <strong>Copyright &copy;@year <a href="http://www.luckyapps.ml">LuckyApps</a>.</strong>
+        All rights reserved.
+        <div class="float-right d-none d-sm-inline-block">
+            <b><a href="#">Developer</a> </b>
+        </div>
+    </footer>
+
+    <!-- AdminLTE App -->
+    <script src="~/Content/plugins/dist/js/adminlte.js"></script> 
+</body>
+</html>

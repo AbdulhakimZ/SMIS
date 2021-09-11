@@ -1,0 +1,51 @@
+﻿@model SMS.Models.SubmitAssignment
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>SubmitAssignment</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.FilePath)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.FilePath)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.SubmissionDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.SubmissionDate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Assesment.Id)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Assesment.Id)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Student.Id)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Student.Id)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.SysId }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

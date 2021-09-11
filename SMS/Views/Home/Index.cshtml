@@ -1,0 +1,125 @@
+﻿@{
+    ViewBag.Title = "Home Page";
+}
+<script src="~/Scripts/chart/exporting.js"></script>
+<script src="~/Scripts/chart/highcharts.js"></script>
+
+
+
+<section class="content">
+    <div class="box box-primary" style="padding:1%">
+        <div class="row">
+            <div class="col-lg-3 col-xs-12 col">
+                <!-- small box -->
+                <div class="small-box bg-green">
+                    <div class="inner">
+
+                        <h3>@ViewBag.totalStudents</h3>
+
+                        <p>Students</p>
+                    </div>
+                    <div class="icon">
+                        <i class="fa fa-users"></i>
+                    </div>
+                    <a href="/Students/Index" class="small-box-footer">view  <i class="fa fa-arrow-circle-right"></i></a>
+                </div>
+            </div>
+            <div class="col-lg-3 col-xs-12 col">
+                <!-- small box -->
+                <div class="small-box bg-aqua">
+                    <div class="inner">
+                        <h3>@ViewBag.classes</h3>
+
+                        <p>Classes</p>
+                    </div>
+                    <div class="icon">
+                        <i class="fa fa-book-open"></i>
+                    </div>
+                    <a class="small-box-footer">... @*<i class="fa fa-arrow-circle-right"></i>*@</a>
+                </div>
+            </div>
+            <div class="col-lg-3 col-xs-12 col">
+                <!-- small box -->
+                <div class="small-box bg-yellow">
+                    <div class="inner">
+                        <h3>@ViewBag.departments</h3>
+
+                        <p>Departments</p>
+                    </div>
+                    <div class="icon">
+                        <i class="fa fa-book-reader"></i>
+                    </div>
+                    <a class="small-box-footer">...@*<i class="fa fa-arrow-circle-right"></i>*@</a>
+                </div>
+            </div>
+            <div class="col-lg-3 col-xs-12 col">
+                <!-- small box -->
+                <div class="small-box bg-red">
+                    <div class="inner">
+                        <h3>@ViewBag.courses</h3>
+
+                        <p>Courses</p>
+                    </div>
+                    <div class="icon">
+                        <i class="fa fa-book"></i>
+                    </div>
+                    <a href="/Courses/Index" class="small-box-footer">view  <i class="fa fa-arrow-circle-right"></i></a>
+                </div>
+            </div> 
+        </div>
+        </div>
+    <div class="jumbotron">
+        <div id="container"></div>
+    </div>
+</section>
+
+    <script type="text/javascript">
+
+        $(document).ready(function () {
+            $.getJSON("/Home/GetData", function (data) {
+                //////////
+                Highcharts.chart('container', {
+                    chart: {
+                        plotBackgroundColor: null,
+                        plotBorderWidth: null,
+                        plotShadow: false,
+                        type: 'pie'
+                    },
+                    title: {
+                        text: 'Assesment Ratio (Total '+data.assesments+")"
+                    },
+                    tooltip: {
+                        pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
+                    },
+                    plotOptions: {
+                        pie: {
+                            allowPointSelect: true,
+                            cursor: 'pointer',
+                            dataLabels: {
+                                enabled: true,
+                                format: '<b>{point.name}</b>: {point.percentage:.1f} %'
+                            }
+                        }
+                    },
+                    series: [{
+                        name: 'Brands',
+                        colorByPoint: true,
+                        data: [ {
+                            name: 'Assignments ('+data.assignments+")",
+                            y: data.assignments
+                        },
+                        {
+                          name: 'Tests ('+data.tests+")",
+                          y: data.tests
+                        },
+                        {
+                         name: 'Project ('+data.projects+")",
+                         y: data.projects
+                         },
+                        ]
+                    }]
+                });
+            });
+        });
+
+    </script>

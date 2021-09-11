@@ -1,0 +1,86 @@
+﻿@model SMS.Models.Message
+
+@{
+    ViewBag.Title = "Send Message";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Send Message</h2>
+
+
+@using (Html.BeginForm()) 
+{
+    @Html.AntiForgeryToken()
+    
+<div class="form-horizontal">
+    <hr />
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" }) 
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.From, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.From, new { htmlAttributes = new { @class = "form-control", @Value = Session["Name"], @readonly = "readonly" } })
+            @Html.ValidationMessageFor(model => model.From, "", new { @class = "text-danger" })
+        </div>
+    </div>
+    @{
+        if (Session["RoleName"].ToString() == "Teachers")
+        {
+            <div class="form-group">
+                @Html.LabelFor(model => model.ToTeachers, "To", htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.DropDownList("ToStudents", null, htmlAttributes: new { @class = "form-control", id = "msgTo" })
+                    @Html.ValidationMessageFor(model => model.ToTeachers, "", new { @class = "text-danger" })
+                </div>
+            </div>
+        }
+        if (Session["RoleName"].ToString() == "Students")
+        {
+            <div class="form-group">
+                @Html.LabelFor(model => model.ToStudents, "To", htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.DropDownList("ToTeachers", null, htmlAttributes: new { @class = "form-control", id = "msgTo" })
+                    @Html.ValidationMessageFor(model => model.ToStudents, "", new { @class = "text-danger" })
+                </div>
+            </div>
+        }
+    }
+
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.Subject, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.Subject, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.Subject, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.Body, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.TextAreaFor(model => model.Body, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.Body, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <input type="submit" value="Send" class="btn btn-success" />
+        </div>
+    </div>
+</div>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index",new { },new { @class="btn btn-primary"})
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+
+    <script>
+                    $(function () {
+                $("#msgTo").chosen();
+            });
+    </script>
+}

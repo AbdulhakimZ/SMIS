@@ -1,0 +1,56 @@
+﻿@model SMS.Models.Message
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div>
+    <h4>Message</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.From)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.From)
+        </dd>
+        @*<dt>
+            To
+        </dt>
+        @{
+            if (Session["RoleName"].ToString() == "Teachers")
+            {
+                <dd>
+                    @Html.DisplayFor(model => model.Student.FullName)
+                </dd>
+            }
+            else if (Session["RoleName"].ToString() == "Students")
+            {
+                <dd>
+                    @Html.DisplayFor(model => model.Teacher.FullName)
+                </dd>
+            }
+        }*@
+        <dt>
+            @Html.DisplayNameFor(model => model.Subject)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Subject)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Body)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Body)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Back to List", "Index", new { }, new { @class = "btn btn-primary  fa" })
+</p>

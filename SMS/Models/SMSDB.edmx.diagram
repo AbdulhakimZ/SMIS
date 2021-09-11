@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="12703dc3daa5495db265810eac78d181" Name="Diagram1" ZoomLevel="72">
+        <EntityTypeShape EntityType="SMSModel.AssesmentType" Width="1.5" PointX="3" PointY="13.375" />
+        <EntityTypeShape EntityType="SMSModel.Department" Width="1.5" PointX="0.75" PointY="5.75" />
+        <EntityTypeShape EntityType="SMSModel.MenuItem" Width="1.5" PointX="6" PointY="5.125" />
+        <EntityTypeShape EntityType="SMSModel.Role" Width="1.5" PointX="6" PointY="8.125" />
+        <EntityTypeShape EntityType="SMSModel.RoleMenu" Width="1.5" PointX="8.25" PointY="8" />
+        <EntityTypeShape EntityType="SMSModel.Section" Width="1.5" PointX="3" PointY="17.5" />
+        <EntityTypeShape EntityType="SMSModel.SubmitAssignment" Width="1.5" PointX="10.5" PointY="13" />
+        <EntityTypeShape EntityType="SMSModel.SuperAdmin" Width="1.5" PointX="0.75" PointY="0.75" />
+        <EntityTypeShape EntityType="SMSModel.Year" Width="1.5" PointX="0.75" PointY="8.375" />
+        <AssociationConnector Association="SMSModel.FK_RoleMenu_MenuItems" />
+        <AssociationConnector Association="SMSModel.FK_RoleMenu_Role" />
+        <AssociationConnector Association="SMSModel.FK_Sections_Year" />
+        <EntityTypeShape EntityType="SMSModel.Student" Width="1.5" PointX="13.375" PointY="8.25" />
+        <AssociationConnector Association="SMSModel.FK_Students_Department" />
+        <AssociationConnector Association="SMSModel.FK_Students_Role" />
+        <AssociationConnector Association="SMSModel.FK_Students_Sections" />
+        <AssociationConnector Association="SMSModel.FK_Students_Year" />
+        <AssociationConnector Association="SMSModel.FK_SubmitAssignment_Students" />
+        <EntityTypeShape EntityType="SMSModel.Course" Width="1.5" PointX="3.5" PointY="5.375" />
+        <AssociationConnector Association="SMSModel.FK_Course_Department" />
+        <AssociationConnector Association="SMSModel.FK_Subjects_Year" />
+        <EntityTypeShape EntityType="SMSModel.Result" Width="1.5" PointX="15.375" PointY="7.5" />
+        <AssociationConnector Association="SMSModel.FK_Results_Students" />
+        <EntityTypeShape EntityType="SMSModel.Teach" Width="1.5" PointX="13.5" PointY="15.25" />
+        <AssociationConnector Association="SMSModel.FK_Teaches_Course" />
+        <AssociationConnector Association="SMSModel.FK_Teaches_Department" />
+        <AssociationConnector Association="SMSModel.FK_Teaches_Sections" />
+        <AssociationConnector Association="SMSModel.FK_Teaches_Year" />
+        <EntityTypeShape EntityType="SMSModel.Account" Width="1.5" PointX="10.75" PointY="8" />
+        <AssociationConnector Association="SMSModel.FK_Account_Role" />
+        <AssociationConnector Association="SMSModel.FK_Account_Students" />
+        <EntityTypeShape EntityType="SMSModel.Teacher" Width="1.5" PointX="8.25" PointY="11.875" />
+        <AssociationConnector Association="SMSModel.FK_Account_Teachers" />
+        <AssociationConnector Association="SMSModel.FK_Course_Teachers" />
+        <AssociationConnector Association="SMSModel.FK_Results_Teachers" />
+        <AssociationConnector Association="SMSModel.FK_Teachers_Role" />
+        <AssociationConnector Association="SMSModel.FK_Students_Teachers" />
+        <AssociationConnector Association="SMSModel.FK_Teaches_Teachers" />
+        <EntityTypeShape EntityType="SMSModel.Assesment" Width="1.5" PointX="16.5" PointY="16" />
+        <AssociationConnector Association="SMSModel.FK_Assesment_AssasementTypes" />
+        <AssociationConnector Association="SMSModel.FK_Assesment_Course" />
+        <AssociationConnector Association="SMSModel.FK_Assesment_Department" />
+        <AssociationConnector Association="SMSModel.FK_Assesment_Sections" />
+        <AssociationConnector Association="SMSModel.FK_Assesment_Teachers" />
+        <AssociationConnector Association="SMSModel.FK_Assesment_Year" />
+        <AssociationConnector Association="SMSModel.FK_Results_Assesment" />
+        <AssociationConnector Association="SMSModel.FK_SubmitAssignment_Assesment" />
+        <EntityTypeShape EntityType="SMSModel.Message" Width="1.5" PointX="16.625" PointY="11.875" />
+        <AssociationConnector Association="SMSModel.FK_Messages_Students" />
+        <AssociationConnector Association="SMSModel.FK_Messages_Teachers" />
+        </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

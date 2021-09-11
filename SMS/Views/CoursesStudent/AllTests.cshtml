@@ -1,0 +1,69 @@
+﻿@model IEnumerable<SMS.Models.Assesment>
+
+@{
+    ViewBag.Title = "AllTests";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@Html.ActionLink("Back", "Index", new { }, new { @class = "btn btn-success" })
+<hr />
+<h2>All Tests</h2>
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.GivenDate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DeadLine)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Title)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Description)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.TotalMark)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.AssesmentType.Name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Course.Name)
+        </th>
+        <th>
+            Instructor
+        </th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.GivenDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DeadLine)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Title)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Description)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TotalMark)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.AssesmentType.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Course.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Teacher.FullName)
+            </td>
+        </tr>
+    }
+
+</table>

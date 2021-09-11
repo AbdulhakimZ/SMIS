@@ -1,0 +1,83 @@
+﻿@model List<SMS.Models.Result>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<h2>Index</h2>
+
+<p>
+    @*@Html.ActionLink("Add new Student", "Create",new { htmlAttributes = new { @class="btn btn-primary"} })*@
+</p>
+@using (@Html.BeginForm("Index", "Results", FormMethod.Post))
+{
+    @Html.AntiForgeryToken()
+    <table id="rsTable" class="table table-bordered table-striped">
+        <thead>
+            <tr>
+                <th> 
+                    Student
+                </th>
+                <th>
+                    Course
+                </th>
+                <th>
+                    Assesment
+                </th>
+                <th>
+                    Mark
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            @for (int i = 0; i < Model.Count; i++)
+            {
+            <tr>
+                <td>
+                    @Html.DisplayFor(item => item[i].Student.FullName)
+                </td>
+                <td>
+                    @Html.DisplayFor(item => item[i].Assesment.Course.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(item => item[i].Assesment.Title)
+                </td>
+                <td>
+                    @Html.HiddenFor(item => item[i].StudentID, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.HiddenFor(item => item[i].AssessmentID, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.EditorFor(item => item[i].Mark, new { htmlAttributes = new { @m = 0, @class = "form-control", @type = "number", @min = "0" } })
+                </td>
+            </tr>
+            }
+        </tbody>
+    </table>
+    <input type="submit" value="Update" class="btn btn-primary" style="color:white; background-color:green " />
+}
+
+@{
+    if (ViewBag.Message == "1")
+    {
+        <script>
+            alert("Mark Updated Successfully");
+        </script>
+    }
+    else if (ViewBag.Message == "0")
+    {
+        <script>
+            alert("Failed! Please try again.");
+        </script>
+    }
+    else
+    {
+
+    }
+}
+
+@section scripts{
+    <script>
+        $(document).ready(function () {
+            $("#rsTable").DataTable();
+
+        });
+    </script>
+}

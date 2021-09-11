@@ -1,0 +1,41 @@
+﻿@model IEnumerable<SMS.Models.Course>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Your Registered Courses</h2>
+
+<table class="table">
+    <tr>
+        <th>
+            Course Name
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Year)
+        </th>
+        <th>
+            Instructor
+        </th>
+        <th>Assesments</th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Year.Value)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Teacher.FullName)
+        </td> 
+        <td> 
+            @Html.ActionLink(" ", "AssesmentsUnderCourse", new { id = item.SysId }, new { @class = "btn  btn-success li fa fa-eye" })
+        </td>
+    </tr>
+}
+
+</table>

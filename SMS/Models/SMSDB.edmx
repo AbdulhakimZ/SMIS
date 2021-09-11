@@ -1,0 +1,1809 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="SMSModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Account">
+          <Key>
+            <PropertyRef Name="SysId" />
+          </Key>
+          <Property Name="SysId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="TeacherID" Type="int" />
+          <Property Name="StudentID" Type="int" />
+          <Property Name="Password" Type="nvarchar" MaxLength="200" />
+          <Property Name="RoleID" Type="int" />
+          <Property Name="CreatedBy" Type="int" />
+          <Property Name="IsDeleted" Type="int" />
+          <Property Name="Salt" Type="nvarchar" MaxLength="200" />
+        </EntityType>
+        <EntityType Name="Assesment">
+          <Key>
+            <PropertyRef Name="SysId" />
+          </Key>
+          <Property Name="SysId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Id" Type="nvarchar" MaxLength="50" />
+          <Property Name="Type" Type="int" />
+          <Property Name="Time" Type="time" Precision="7" />
+          <Property Name="GivenDate" Type="date" />
+          <Property Name="DeadLine" Type="date" />
+          <Property Name="SectionID" Type="int" />
+          <Property Name="DepartmentID" Type="int" />
+          <Property Name="CourseID" Type="int" />
+          <Property Name="YearID" Type="int" />
+          <Property Name="Title" Type="nvarchar" MaxLength="50" />
+          <Property Name="Description" Type="ntext" />
+          <Property Name="TotalMark" Type="nvarchar" MaxLength="50" />
+          <Property Name="CreatedBy" Type="int" />
+          <Property Name="IsDeleted" Type="int" Nullable="false" />
+          <Property Name="Attachment" Type="nvarchar" MaxLength="200" />
+        </EntityType>
+        <EntityType Name="AssesmentTypes">
+          <Key>
+            <PropertyRef Name="SysId" />
+          </Key>
+          <Property Name="SysId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Course">
+          <Key>
+            <PropertyRef Name="SysId" />
+          </Key>
+          <Property Name="SysId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" />
+          <Property Name="YearId" Type="int" />
+          <Property Name="CreatedBy" Type="int" />
+          <Property Name="IsDeleted" Type="int" />
+          <Property Name="DepartmentID" Type="int" />
+        </EntityType>
+        <EntityType Name="Department">
+          <Key>
+            <PropertyRef Name="SysId" />
+          </Key>
+          <Property Name="SysId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="MenuItems">
+          <Key>
+            <PropertyRef Name="SysId" />
+          </Key>
+          <Property Name="SysId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" />
+          <Property Name="Link" Type="nvarchar" MaxLength="100" />
+          <Property Name="Icon" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Messages">
+          <Key>
+            <PropertyRef Name="SysId" />
+          </Key>
+          <Property Name="SysId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="From" Type="nvarchar" MaxLength="50" />
+          <Property Name="ToStudents" Type="int" />
+          <Property Name="ToTeachers" Type="int" />
+          <Property Name="Subject" Type="nvarchar" MaxLength="200" />
+          <Property Name="Body" Type="ntext" />
+          <Property Name="Status" Type="int" />
+          <Property Name="SentDate" Type="date" />
+          <Property Name="IsDeleted" Type="int" />
+        </EntityType>
+        <EntityType Name="Results">
+          <Key>
+            <PropertyRef Name="SysId" />
+          </Key>
+          <Property Name="SysId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="AssessmentID" Type="int" />
+          <Property Name="StudentID" Type="int" />
+          <Property Name="Mark" Type="nvarchar" MaxLength="50" />
+          <Property Name="CreatedBy" Type="int" />
+          <Property Name="IsDeleted" Type="int" />
+        </EntityType>
+        <EntityType Name="Role">
+          <Key>
+            <PropertyRef Name="SysId" />
+          </Key>
+          <Property Name="SysId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="RoleMenu">
+          <Key>
+            <PropertyRef Name="SysId" />
+          </Key>
+          <Property Name="SysId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="RoleId" Type="int" />
+          <Property Name="MenuId" Type="int" />
+          <Property Name="IsDeleted" Type="int" />
+          <Property Name="CreatedBy" Type="int" />
+        </EntityType>
+        <EntityType Name="Sections">
+          <Key>
+            <PropertyRef Name="SysId" />
+          </Key>
+          <Property Name="SysId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Value" Type="nvarchar" MaxLength="50" />
+          <Property Name="YearId" Type="int" />
+          <Property Name="CreatedBy" Type="int" />
+          <Property Name="IsDeleted" Type="int" />
+        </EntityType>
+        <EntityType Name="Students">
+          <Key>
+            <PropertyRef Name="SysId" />
+          </Key>
+          <Property Name="SysId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Id" Type="nvarchar" MaxLength="50" />
+          <Property Name="FirstName" Type="nvarchar" MaxLength="50" />
+          <Property Name="LastName" Type="nvarchar" MaxLength="50" />
+          <Property Name="FullName" Type="nvarchar" MaxLength="101" StoreGeneratedPattern="Computed" />
+          <Property Name="UserName" Type="nvarchar" MaxLength="50" />
+          <Property Name="Email" Type="nvarchar" MaxLength="50" />
+          <Property Name="Phone" Type="nvarchar" MaxLength="50" />
+          <Property Name="Password" Type="nvarchar" MaxLength="50" />
+          <Property Name="SectionID" Type="int" />
+          <Property Name="YearID" Type="int" />
+          <Property Name="CreatedBy" Type="int" />
+          <Property Name="IsDeleted" Type="int" />
+          <Property Name="Role" Type="int" />
+          <Property Name="Photo" Type="nvarchar" MaxLength="50" />
+          <Property Name="DepartmentID" Type="int" />
+        </EntityType>
+        <EntityType Name="SubmitAssignment">
+          <Key>
+            <PropertyRef Name="SysId" />
+          </Key>
+          <Property Name="SysId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="StudentId" Type="int" />
+          <Property Name="AssesmentId" Type="int" />
+          <Property Name="FilePath" Type="nvarchar" MaxLength="150" />
+          <Property Name="SubmissionDate" Type="datetime" />
+        </EntityType>
+        <EntityType Name="SuperAdmin">
+          <Key>
+            <PropertyRef Name="SysId" />
+          </Key>
+          <Property Name="SysId" Type="int" Nullable="false" />
+          <Property Name="UserName" Type="nvarchar" MaxLength="50" />
+          <Property Name="Password" Type="nvarchar" MaxLength="50" />
+          <Property Name="CreatedBy" Type="nvarchar" MaxLength="50" />
+          <Property Name="IsDeleted" Type="int" />
+        </EntityType>
+        <EntityType Name="Teachers">
+          <Key>
+            <PropertyRef Name="SysId" />
+          </Key>
+          <Property Name="SysId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Id" Type="nvarchar" MaxLength="50" />
+          <Property Name="FirstName" Type="nvarchar" MaxLength="50" />
+          <Property Name="LastName" Type="nvarchar" MaxLength="50" />
+          <Property Name="FullName" Type="nvarchar" MaxLength="101" StoreGeneratedPattern="Computed" />
+          <Property Name="Email" Type="nvarchar" MaxLength="50" />
+          <Property Name="Role" Type="int" />
+          <Property Name="Photo" Type="nvarchar" MaxLength="250" />
+          <Property Name="Password" Type="nvarchar" MaxLength="200" />
+          <Property Name="CreatedBy" Type="nvarchar" MaxLength="50" />
+          <Property Name="IsDeleted" Type="int" />
+        </EntityType>
+        <EntityType Name="Teaches">
+          <Key>
+            <PropertyRef Name="SysId" />
+          </Key>
+          <Property Name="SysId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="TeacherId" Type="int" />
+          <Property Name="CourseId" Type="int" />
+          <Property Name="DepartmentId" Type="int" />
+          <Property Name="YearId" Type="int" />
+          <Property Name="SectionId" Type="int" />
+        </EntityType>
+        <EntityType Name="Year">
+          <Key>
+            <PropertyRef Name="SysId" />
+          </Key>
+          <Property Name="SysId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Value" Type="nvarchar" MaxLength="50" />
+          <Property Name="CreatedBy" Type="int" />
+          <Property Name="IsDeleted" Type="int" />
+        </EntityType>
+        <Association Name="FK_Account_Role">
+          <End Role="Role" Type="Self.Role" Multiplicity="0..1" />
+          <End Role="Account" Type="Self.Account" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Role">
+              <PropertyRef Name="SysId" />
+            </Principal>
+            <Dependent Role="Account">
+              <PropertyRef Name="RoleID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Account_Students">
+          <End Role="Students" Type="Self.Students" Multiplicity="0..1" />
+          <End Role="Account" Type="Self.Account" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Students">
+              <PropertyRef Name="SysId" />
+            </Principal>
+            <Dependent Role="Account">
+              <PropertyRef Name="StudentID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Account_Teachers">
+          <End Role="Teachers" Type="Self.Teachers" Multiplicity="0..1" />
+          <End Role="Account" Type="Self.Account" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Teachers">
+              <PropertyRef Name="SysId" />
+            </Principal>
+            <Dependent Role="Account">
+              <PropertyRef Name="TeacherID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Assesment_AssasementTypes">
+          <End Role="AssesmentTypes" Type="Self.AssesmentTypes" Multiplicity="0..1" />
+          <End Role="Assesment" Type="Self.Assesment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AssesmentTypes">
+              <PropertyRef Name="SysId" />
+            </Principal>
+            <Dependent Role="Assesment">
+              <PropertyRef Name="Type" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Assesment_Course">
+          <End Role="Course" Type="Self.Course" Multiplicity="0..1" />
+          <End Role="Assesment" Type="Self.Assesment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Course">
+              <PropertyRef Name="SysId" />
+            </Principal>
+            <Dependent Role="Assesment">
+              <PropertyRef Name="CourseID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Assesment_Department">
+          <End Role="Department" Type="Self.Department" Multiplicity="0..1" />
+          <End Role="Assesment" Type="Self.Assesment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Department">
+              <PropertyRef Name="SysId" />
+            </Principal>
+            <Dependent Role="Assesment">
+              <PropertyRef Name="DepartmentID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Assesment_Sections">
+          <End Role="Sections" Type="Self.Sections" Multiplicity="0..1" />
+          <End Role="Assesment" Type="Self.Assesment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Sections">
+              <PropertyRef Name="SysId" />
+            </Principal>
+            <Dependent Role="Assesment">
+              <PropertyRef Name="SectionID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Assesment_Teachers">
+          <End Role="Teachers" Type="Self.Teachers" Multiplicity="0..1" />
+          <End Role="Assesment" Type="Self.Assesment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Teachers">
+              <PropertyRef Name="SysId" />
+            </Principal>
+            <Dependent Role="Assesment">
+              <PropertyRef Name="CreatedBy" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Assesment_Year">
+          <End Role="Year" Type="Self.Year" Multiplicity="0..1" />
+          <End Role="Assesment" Type="Self.Assesment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Year">
+              <PropertyRef Name="SysId" />
+            </Principal>
+            <Dependent Role="Assesment">
+              <PropertyRef Name="YearID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Course_Department">
+          <End Role="Department" Type="Self.Department" Multiplicity="0..1" />
+          <End Role="Course" Type="Self.Course" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Department">
+              <PropertyRef Name="SysId" />
+            </Principal>
+            <Dependent Role="Course">
+              <PropertyRef Name="DepartmentID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Course_Teachers">
+          <End Role="Teachers" Type="Self.Teachers" Multiplicity="0..1" />
+          <End Role="Course" Type="Self.Course" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Teachers">
+              <PropertyRef Name="SysId" />
+            </Principal>
+            <Dependent Role="Course">
+              <PropertyRef Name="CreatedBy" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Messages_Students">
+          <End Role="Students" Type="Self.Students" Multiplicity="0..1" />
+          <End Role="Messages" Type="Self.Messages" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Students">
+              <PropertyRef Name="SysId" />
+            </Principal>
+            <Dependent Role="Messages">
+              <PropertyRef Name="ToStudents" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Messages_Teachers">
+          <End Role="Teachers" Type="Self.Teachers" Multiplicity="0..1" />
+          <End Role="Messages" Type="Self.Messages" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Teachers">
+              <PropertyRef Name="SysId" />
+            </Principal>
+            <Dependent Role="Messages">
+              <PropertyRef Name="ToTeachers" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Results_Assesment">
+          <End Role="Assesment" Type="Self.Assesment" Multiplicity="0..1" />
+          <End Role="Results" Type="Self.Results" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Assesment">
+              <PropertyRef Name="SysId" />
+            </Principal>
+            <Dependent Role="Results">
+              <PropertyRef Name="AssessmentID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Results_Students">
+          <End Role="Students" Type="Self.Students" Multiplicity="0..1" />
+          <End Role="Results" Type="Self.Results" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Students">
+              <PropertyRef Name="SysId" />
+            </Principal>
+            <Dependent Role="Results">
+              <PropertyRef Name="StudentID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Results_Teachers">
+          <End Role="Teachers" Type="Self.Teachers" Multiplicity="0..1" />
+          <End Role="Results" Type="Self.Results" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Teachers">
+              <PropertyRef Name="SysId" />
+            </Principal>
+            <Dependent Role="Results">
+              <PropertyRef Name="CreatedBy" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_RoleMenu_MenuItems">
+          <End Role="MenuItems" Type="Self.MenuItems" Multiplicity="0..1" />
+          <End Role="RoleMenu" Type="Self.RoleMenu" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MenuItems">
+              <PropertyRef Name="SysId" />
+            </Principal>
+            <Dependent Role="RoleMenu">
+              <PropertyRef Name="MenuId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_RoleMenu_Role">
+          <End Role="Role" Type="Self.Role" Multiplicity="0..1" />
+          <End Role="RoleMenu" Type="Self.RoleMenu" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Role">
+              <PropertyRef Name="SysId" />
+            </Principal>
+            <Dependent Role="RoleMenu">
+              <PropertyRef Name="RoleId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Sections_Year">
+          <End Role="Year" Type="Self.Year" Multiplicity="0..1" />
+          <End Role="Sections" Type="Self.Sections" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Year">
+              <PropertyRef Name="SysId" />
+            </Principal>
+            <Dependent Role="Sections">
+              <PropertyRef Name="YearId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Students_Department">
+          <End Role="Department" Type="Self.Department" Multiplicity="0..1" />
+          <End Role="Students" Type="Self.Students" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Department">
+              <PropertyRef Name="SysId" />
+            </Principal>
+            <Dependent Role="Students">
+              <PropertyRef Name="DepartmentID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Students_Role">
+          <End Role="Role" Type="Self.Role" Multiplicity="0..1" />
+          <End Role="Students" Type="Self.Students" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Role">
+              <PropertyRef Name="SysId" />
+            </Principal>
+            <Dependent Role="Students">
+              <PropertyRef Name="Role" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Students_Sections">
+          <End Role="Sections" Type="Self.Sections" Multiplicity="0..1" />
+          <End Role="Students" Type="Self.Students" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Sections">
+              <PropertyRef Name="SysId" />
+            </Principal>
+            <Dependent Role="Students">
+              <PropertyRef Name="SectionID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Students_Teachers">
+          <End Role="Teachers" Type="Self.Teachers" Multiplicity="0..1" />
+          <End Role="Students" Type="Self.Students" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Teachers">
+              <PropertyRef Name="SysId" />
+            </Principal>
+            <Dependent Role="Students">
+              <PropertyRef Name="CreatedBy" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Students_Year">
+          <End Role="Year" Type="Self.Year" Multiplicity="0..1" />
+          <End Role="Students" Type="Self.Students" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Year">
+              <PropertyRef Name="SysId" />
+            </Principal>
+            <Dependent Role="Students">
+              <PropertyRef Name="YearID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Subjects_Year">
+          <End Role="Year" Type="Self.Year" Multiplicity="0..1" />
+          <End Role="Course" Type="Self.Course" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Year">
+              <PropertyRef Name="SysId" />
+            </Principal>
+            <Dependent Role="Course">
+              <PropertyRef Name="YearId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SubmitAssignment_Assesment">
+          <End Role="Assesment" Type="Self.Assesment" Multiplicity="0..1" />
+          <End Role="SubmitAssignment" Type="Self.SubmitAssignment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Assesment">
+              <PropertyRef Name="SysId" />
+            </Principal>
+            <Dependent Role="SubmitAssignment">
+              <PropertyRef Name="AssesmentId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SubmitAssignment_Students">
+          <End Role="Students" Type="Self.Students" Multiplicity="0..1" />
+          <End Role="SubmitAssignment" Type="Self.SubmitAssignment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Students">
+              <PropertyRef Name="SysId" />
+            </Principal>
+            <Dependent Role="SubmitAssignment">
+              <PropertyRef Name="StudentId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Teachers_Role">
+          <End Role="Role" Type="Self.Role" Multiplicity="0..1" />
+          <End Role="Teachers" Type="Self.Teachers" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Role">
+              <PropertyRef Name="SysId" />
+            </Principal>
+            <Dependent Role="Teachers">
+              <PropertyRef Name="Role" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Teaches_Course">
+          <End Role="Course" Type="Self.Course" Multiplicity="0..1" />
+          <End Role="Teaches" Type="Self.Teaches" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Course">
+              <PropertyRef Name="SysId" />
+            </Principal>
+            <Dependent Role="Teaches">
+              <PropertyRef Name="CourseId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Teaches_Department">
+          <End Role="Department" Type="Self.Department" Multiplicity="0..1" />
+          <End Role="Teaches" Type="Self.Teaches" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Department">
+              <PropertyRef Name="SysId" />
+            </Principal>
+            <Dependent Role="Teaches">
+              <PropertyRef Name="DepartmentId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Teaches_Sections">
+          <End Role="Sections" Type="Self.Sections" Multiplicity="0..1" />
+          <End Role="Teaches" Type="Self.Teaches" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Sections">
+              <PropertyRef Name="SysId" />
+            </Principal>
+            <Dependent Role="Teaches">
+              <PropertyRef Name="SectionId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Teaches_Teachers">
+          <End Role="Teachers" Type="Self.Teachers" Multiplicity="0..1" />
+          <End Role="Teaches" Type="Self.Teaches" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Teachers">
+              <PropertyRef Name="SysId" />
+            </Principal>
+            <Dependent Role="Teaches">
+              <PropertyRef Name="TeacherId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Teaches_Year">
+          <End Role="Year" Type="Self.Year" Multiplicity="0..1" />
+          <End Role="Teaches" Type="Self.Teaches" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Year">
+              <PropertyRef Name="SysId" />
+            </Principal>
+            <Dependent Role="Teaches">
+              <PropertyRef Name="YearId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="SMSModelStoreContainer">
+          <EntitySet Name="Account" EntityType="Self.Account" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Assesment" EntityType="Self.Assesment" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="AssesmentTypes" EntityType="Self.AssesmentTypes" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Course" EntityType="Self.Course" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Department" EntityType="Self.Department" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="MenuItems" EntityType="Self.MenuItems" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Messages" EntityType="Self.Messages" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Results" EntityType="Self.Results" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Role" EntityType="Self.Role" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="RoleMenu" EntityType="Self.RoleMenu" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Sections" EntityType="Self.Sections" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Students" EntityType="Self.Students" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SubmitAssignment" EntityType="Self.SubmitAssignment" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SuperAdmin" EntityType="Self.SuperAdmin" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Teachers" EntityType="Self.Teachers" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Teaches" EntityType="Self.Teaches" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Year" EntityType="Self.Year" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_Account_Role" Association="Self.FK_Account_Role">
+            <End Role="Role" EntitySet="Role" />
+            <End Role="Account" EntitySet="Account" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Account_Students" Association="Self.FK_Account_Students">
+            <End Role="Students" EntitySet="Students" />
+            <End Role="Account" EntitySet="Account" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Account_Teachers" Association="Self.FK_Account_Teachers">
+            <End Role="Teachers" EntitySet="Teachers" />
+            <End Role="Account" EntitySet="Account" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Assesment_AssasementTypes" Association="Self.FK_Assesment_AssasementTypes">
+            <End Role="AssesmentTypes" EntitySet="AssesmentTypes" />
+            <End Role="Assesment" EntitySet="Assesment" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Assesment_Course" Association="Self.FK_Assesment_Course">
+            <End Role="Course" EntitySet="Course" />
+            <End Role="Assesment" EntitySet="Assesment" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Assesment_Department" Association="Self.FK_Assesment_Department">
+            <End Role="Department" EntitySet="Department" />
+            <End Role="Assesment" EntitySet="Assesment" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Assesment_Sections" Association="Self.FK_Assesment_Sections">
+            <End Role="Sections" EntitySet="Sections" />
+            <End Role="Assesment" EntitySet="Assesment" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Assesment_Teachers" Association="Self.FK_Assesment_Teachers">
+            <End Role="Teachers" EntitySet="Teachers" />
+            <End Role="Assesment" EntitySet="Assesment" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Assesment_Year" Association="Self.FK_Assesment_Year">
+            <End Role="Year" EntitySet="Year" />
+            <End Role="Assesment" EntitySet="Assesment" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Course_Department" Association="Self.FK_Course_Department">
+            <End Role="Department" EntitySet="Department" />
+            <End Role="Course" EntitySet="Course" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Course_Teachers" Association="Self.FK_Course_Teachers">
+            <End Role="Teachers" EntitySet="Teachers" />
+            <End Role="Course" EntitySet="Course" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Messages_Students" Association="Self.FK_Messages_Students">
+            <End Role="Students" EntitySet="Students" />
+            <End Role="Messages" EntitySet="Messages" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Messages_Teachers" Association="Self.FK_Messages_Teachers">
+            <End Role="Teachers" EntitySet="Teachers" />
+            <End Role="Messages" EntitySet="Messages" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Results_Assesment" Association="Self.FK_Results_Assesment">
+            <End Role="Assesment" EntitySet="Assesment" />
+            <End Role="Results" EntitySet="Results" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Results_Students" Association="Self.FK_Results_Students">
+            <End Role="Students" EntitySet="Students" />
+            <End Role="Results" EntitySet="Results" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Results_Teachers" Association="Self.FK_Results_Teachers">
+            <End Role="Teachers" EntitySet="Teachers" />
+            <End Role="Results" EntitySet="Results" />
+          </AssociationSet>
+          <AssociationSet Name="FK_RoleMenu_MenuItems" Association="Self.FK_RoleMenu_MenuItems">
+            <End Role="MenuItems" EntitySet="MenuItems" />
+            <End Role="RoleMenu" EntitySet="RoleMenu" />
+          </AssociationSet>
+          <AssociationSet Name="FK_RoleMenu_Role" Association="Self.FK_RoleMenu_Role">
+            <End Role="Role" EntitySet="Role" />
+            <End Role="RoleMenu" EntitySet="RoleMenu" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Sections_Year" Association="Self.FK_Sections_Year">
+            <End Role="Year" EntitySet="Year" />
+            <End Role="Sections" EntitySet="Sections" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Students_Department" Association="Self.FK_Students_Department">
+            <End Role="Department" EntitySet="Department" />
+            <End Role="Students" EntitySet="Students" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Students_Role" Association="Self.FK_Students_Role">
+            <End Role="Role" EntitySet="Role" />
+            <End Role="Students" EntitySet="Students" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Students_Sections" Association="Self.FK_Students_Sections">
+            <End Role="Sections" EntitySet="Sections" />
+            <End Role="Students" EntitySet="Students" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Students_Teachers" Association="Self.FK_Students_Teachers">
+            <End Role="Teachers" EntitySet="Teachers" />
+            <End Role="Students" EntitySet="Students" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Students_Year" Association="Self.FK_Students_Year">
+            <End Role="Year" EntitySet="Year" />
+            <End Role="Students" EntitySet="Students" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Subjects_Year" Association="Self.FK_Subjects_Year">
+            <End Role="Year" EntitySet="Year" />
+            <End Role="Course" EntitySet="Course" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SubmitAssignment_Assesment" Association="Self.FK_SubmitAssignment_Assesment">
+            <End Role="Assesment" EntitySet="Assesment" />
+            <End Role="SubmitAssignment" EntitySet="SubmitAssignment" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SubmitAssignment_Students" Association="Self.FK_SubmitAssignment_Students">
+            <End Role="Students" EntitySet="Students" />
+            <End Role="SubmitAssignment" EntitySet="SubmitAssignment" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Teachers_Role" Association="Self.FK_Teachers_Role">
+            <End Role="Role" EntitySet="Role" />
+            <End Role="Teachers" EntitySet="Teachers" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Teaches_Course" Association="Self.FK_Teaches_Course">
+            <End Role="Course" EntitySet="Course" />
+            <End Role="Teaches" EntitySet="Teaches" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Teaches_Department" Association="Self.FK_Teaches_Department">
+            <End Role="Department" EntitySet="Department" />
+            <End Role="Teaches" EntitySet="Teaches" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Teaches_Sections" Association="Self.FK_Teaches_Sections">
+            <End Role="Sections" EntitySet="Sections" />
+            <End Role="Teaches" EntitySet="Teaches" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Teaches_Teachers" Association="Self.FK_Teaches_Teachers">
+            <End Role="Teachers" EntitySet="Teachers" />
+            <End Role="Teaches" EntitySet="Teaches" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Teaches_Year" Association="Self.FK_Teaches_Year">
+            <End Role="Year" EntitySet="Year" />
+            <End Role="Teaches" EntitySet="Teaches" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="SMSModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="SMSEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="AssesmentTypes" EntityType="SMSModel.AssesmentType" />
+          <EntitySet Name="Departments" EntityType="SMSModel.Department" />
+          <EntitySet Name="MenuItems" EntityType="SMSModel.MenuItem" />
+          <EntitySet Name="Roles" EntityType="SMSModel.Role" />
+          <EntitySet Name="RoleMenus" EntityType="SMSModel.RoleMenu" />
+          <EntitySet Name="Sections" EntityType="SMSModel.Section" />
+          <EntitySet Name="SubmitAssignments" EntityType="SMSModel.SubmitAssignment" />
+          <EntitySet Name="SuperAdmins" EntityType="SMSModel.SuperAdmin" />
+          <EntitySet Name="Years" EntityType="SMSModel.Year" />
+          <AssociationSet Name="FK_RoleMenu_MenuItems" Association="SMSModel.FK_RoleMenu_MenuItems">
+            <End Role="MenuItem" EntitySet="MenuItems" />
+            <End Role="RoleMenu" EntitySet="RoleMenus" />
+          </AssociationSet>
+          <AssociationSet Name="FK_RoleMenu_Role" Association="SMSModel.FK_RoleMenu_Role">
+            <End Role="Role" EntitySet="Roles" />
+            <End Role="RoleMenu" EntitySet="RoleMenus" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Sections_Year" Association="SMSModel.FK_Sections_Year">
+            <End Role="Year" EntitySet="Years" />
+            <End Role="Section" EntitySet="Sections" />
+          </AssociationSet>
+          <EntitySet Name="Students" EntityType="SMSModel.Student" />
+          <AssociationSet Name="FK_Students_Department" Association="SMSModel.FK_Students_Department">
+            <End Role="Department" EntitySet="Departments" />
+            <End Role="Student" EntitySet="Students" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Students_Role" Association="SMSModel.FK_Students_Role">
+            <End Role="Role" EntitySet="Roles" />
+            <End Role="Student" EntitySet="Students" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Students_Sections" Association="SMSModel.FK_Students_Sections">
+            <End Role="Section" EntitySet="Sections" />
+            <End Role="Student" EntitySet="Students" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Students_Year" Association="SMSModel.FK_Students_Year">
+            <End Role="Year" EntitySet="Years" />
+            <End Role="Student" EntitySet="Students" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SubmitAssignment_Students" Association="SMSModel.FK_SubmitAssignment_Students">
+            <End Role="Student" EntitySet="Students" />
+            <End Role="SubmitAssignment" EntitySet="SubmitAssignments" />
+          </AssociationSet>
+          <EntitySet Name="Courses" EntityType="SMSModel.Course" />
+          <AssociationSet Name="FK_Course_Department" Association="SMSModel.FK_Course_Department">
+            <End Role="Department" EntitySet="Departments" />
+            <End Role="Course" EntitySet="Courses" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Subjects_Year" Association="SMSModel.FK_Subjects_Year">
+            <End Role="Year" EntitySet="Years" />
+            <End Role="Course" EntitySet="Courses" />
+          </AssociationSet>
+          <EntitySet Name="Results" EntityType="SMSModel.Result" />
+          <AssociationSet Name="FK_Results_Students" Association="SMSModel.FK_Results_Students">
+            <End Role="Student" EntitySet="Students" />
+            <End Role="Result" EntitySet="Results" />
+          </AssociationSet>
+          <EntitySet Name="Teaches" EntityType="SMSModel.Teach" />
+          <AssociationSet Name="FK_Teaches_Course" Association="SMSModel.FK_Teaches_Course">
+            <End Role="Course" EntitySet="Courses" />
+            <End Role="Teach" EntitySet="Teaches" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Teaches_Department" Association="SMSModel.FK_Teaches_Department">
+            <End Role="Department" EntitySet="Departments" />
+            <End Role="Teach" EntitySet="Teaches" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Teaches_Sections" Association="SMSModel.FK_Teaches_Sections">
+            <End Role="Section" EntitySet="Sections" />
+            <End Role="Teach" EntitySet="Teaches" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Teaches_Year" Association="SMSModel.FK_Teaches_Year">
+            <End Role="Year" EntitySet="Years" />
+            <End Role="Teach" EntitySet="Teaches" />
+          </AssociationSet>
+          <EntitySet Name="Accounts" EntityType="SMSModel.Account" />
+          <AssociationSet Name="FK_Account_Role" Association="SMSModel.FK_Account_Role">
+            <End Role="Role" EntitySet="Roles" />
+            <End Role="Account" EntitySet="Accounts" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Account_Students" Association="SMSModel.FK_Account_Students">
+            <End Role="Student" EntitySet="Students" />
+            <End Role="Account" EntitySet="Accounts" />
+          </AssociationSet>
+          <EntitySet Name="Teachers" EntityType="SMSModel.Teacher" />
+          <AssociationSet Name="FK_Account_Teachers" Association="SMSModel.FK_Account_Teachers">
+            <End Role="Teacher" EntitySet="Teachers" />
+            <End Role="Account" EntitySet="Accounts" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Course_Teachers" Association="SMSModel.FK_Course_Teachers">
+            <End Role="Teacher" EntitySet="Teachers" />
+            <End Role="Course" EntitySet="Courses" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Results_Teachers" Association="SMSModel.FK_Results_Teachers">
+            <End Role="Teacher" EntitySet="Teachers" />
+            <End Role="Result" EntitySet="Results" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Teachers_Role" Association="SMSModel.FK_Teachers_Role">
+            <End Role="Role" EntitySet="Roles" />
+            <End Role="Teacher" EntitySet="Teachers" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Students_Teachers" Association="SMSModel.FK_Students_Teachers">
+            <End Role="Teacher" EntitySet="Teachers" />
+            <End Role="Student" EntitySet="Students" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Teaches_Teachers" Association="SMSModel.FK_Teaches_Teachers">
+            <End Role="Teacher" EntitySet="Teachers" />
+            <End Role="Teach" EntitySet="Teaches" />
+          </AssociationSet>
+          <EntitySet Name="Assesments" EntityType="SMSModel.Assesment" />
+          <AssociationSet Name="FK_Assesment_AssasementTypes" Association="SMSModel.FK_Assesment_AssasementTypes">
+            <End Role="AssesmentType" EntitySet="AssesmentTypes" />
+            <End Role="Assesment" EntitySet="Assesments" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Assesment_Course" Association="SMSModel.FK_Assesment_Course">
+            <End Role="Course" EntitySet="Courses" />
+            <End Role="Assesment" EntitySet="Assesments" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Assesment_Department" Association="SMSModel.FK_Assesment_Department">
+            <End Role="Department" EntitySet="Departments" />
+            <End Role="Assesment" EntitySet="Assesments" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Assesment_Sections" Association="SMSModel.FK_Assesment_Sections">
+            <End Role="Section" EntitySet="Sections" />
+            <End Role="Assesment" EntitySet="Assesments" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Assesment_Teachers" Association="SMSModel.FK_Assesment_Teachers">
+            <End Role="Teacher" EntitySet="Teachers" />
+            <End Role="Assesment" EntitySet="Assesments" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Assesment_Year" Association="SMSModel.FK_Assesment_Year">
+            <End Role="Year" EntitySet="Years" />
+            <End Role="Assesment" EntitySet="Assesments" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Results_Assesment" Association="SMSModel.FK_Results_Assesment">
+            <End Role="Assesment" EntitySet="Assesments" />
+            <End Role="Result" EntitySet="Results" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SubmitAssignment_Assesment" Association="SMSModel.FK_SubmitAssignment_Assesment">
+            <End Role="Assesment" EntitySet="Assesments" />
+            <End Role="SubmitAssignment" EntitySet="SubmitAssignments" />
+          </AssociationSet>
+          <EntitySet Name="Messages" EntityType="SMSModel.Message" />
+          <AssociationSet Name="FK_Messages_Students" Association="SMSModel.FK_Messages_Students">
+            <End Role="Student" EntitySet="Students" />
+            <End Role="Message" EntitySet="Messages" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Messages_Teachers" Association="SMSModel.FK_Messages_Teachers">
+            <End Role="Teacher" EntitySet="Teachers" />
+            <End Role="Message" EntitySet="Messages" />
+          </AssociationSet>
+          </EntityContainer>
+        <EntityType Name="AssesmentType">
+          <Key>
+            <PropertyRef Name="SysId" />
+          </Key>
+          <Property Name="SysId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Assesments" Relationship="SMSModel.FK_Assesment_AssasementTypes" FromRole="AssesmentType" ToRole="Assesment" />
+        </EntityType>
+        <EntityType Name="Department">
+          <Key>
+            <PropertyRef Name="SysId" />
+          </Key>
+          <Property Name="SysId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Students" Relationship="SMSModel.FK_Students_Department" FromRole="Department" ToRole="Student" />
+          <NavigationProperty Name="Courses" Relationship="SMSModel.FK_Course_Department" FromRole="Department" ToRole="Course" />
+          <NavigationProperty Name="Teaches" Relationship="SMSModel.FK_Teaches_Department" FromRole="Department" ToRole="Teach" />
+          <NavigationProperty Name="Assesments" Relationship="SMSModel.FK_Assesment_Department" FromRole="Department" ToRole="Assesment" />
+        </EntityType>
+        <EntityType Name="MenuItem">
+          <Key>
+            <PropertyRef Name="SysId" />
+          </Key>
+          <Property Name="SysId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Link" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Icon" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="RoleMenus" Relationship="SMSModel.FK_RoleMenu_MenuItems" FromRole="MenuItem" ToRole="RoleMenu" />
+        </EntityType>
+        <EntityType Name="Role">
+          <Key>
+            <PropertyRef Name="SysId" />
+          </Key>
+          <Property Name="SysId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="RoleMenus" Relationship="SMSModel.FK_RoleMenu_Role" FromRole="Role" ToRole="RoleMenu" />
+          <NavigationProperty Name="Students" Relationship="SMSModel.FK_Students_Role" FromRole="Role" ToRole="Student" />
+          <NavigationProperty Name="Accounts" Relationship="SMSModel.FK_Account_Role" FromRole="Role" ToRole="Account" />
+          <NavigationProperty Name="Teachers" Relationship="SMSModel.FK_Teachers_Role" FromRole="Role" ToRole="Teacher" />
+        </EntityType>
+        <EntityType Name="RoleMenu">
+          <Key>
+            <PropertyRef Name="SysId" />
+          </Key>
+          <Property Name="SysId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="RoleId" Type="Int32" />
+          <Property Name="MenuId" Type="Int32" />
+          <Property Name="IsDeleted" Type="Int32" />
+          <Property Name="CreatedBy" Type="Int32" />
+          <NavigationProperty Name="MenuItem" Relationship="SMSModel.FK_RoleMenu_MenuItems" FromRole="RoleMenu" ToRole="MenuItem" />
+          <NavigationProperty Name="Role" Relationship="SMSModel.FK_RoleMenu_Role" FromRole="RoleMenu" ToRole="Role" />
+        </EntityType>
+        <EntityType Name="Section">
+          <Key>
+            <PropertyRef Name="SysId" />
+          </Key>
+          <Property Name="SysId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Value" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="YearId" Type="Int32" />
+          <Property Name="CreatedBy" Type="Int32" />
+          <Property Name="IsDeleted" Type="Int32" />
+          <NavigationProperty Name="Year" Relationship="SMSModel.FK_Sections_Year" FromRole="Section" ToRole="Year" />
+          <NavigationProperty Name="Students" Relationship="SMSModel.FK_Students_Sections" FromRole="Section" ToRole="Student" />
+          <NavigationProperty Name="Teaches" Relationship="SMSModel.FK_Teaches_Sections" FromRole="Section" ToRole="Teach" />
+          <NavigationProperty Name="Assesments" Relationship="SMSModel.FK_Assesment_Sections" FromRole="Section" ToRole="Assesment" />
+        </EntityType>
+        <EntityType Name="SubmitAssignment">
+          <Key>
+            <PropertyRef Name="SysId" />
+          </Key>
+          <Property Name="SysId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="StudentId" Type="Int32" />
+          <Property Name="AssesmentId" Type="Int32" />
+          <Property Name="FilePath" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="SubmissionDate" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="Student" Relationship="SMSModel.FK_SubmitAssignment_Students" FromRole="SubmitAssignment" ToRole="Student" />
+          <NavigationProperty Name="Assesment" Relationship="SMSModel.FK_SubmitAssignment_Assesment" FromRole="SubmitAssignment" ToRole="Assesment" />
+        </EntityType>
+        <EntityType Name="SuperAdmin">
+          <Key>
+            <PropertyRef Name="SysId" />
+          </Key>
+          <Property Name="SysId" Type="Int32" Nullable="false" />
+          <Property Name="UserName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Password" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="CreatedBy" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="IsDeleted" Type="Int32" />
+        </EntityType>
+        <EntityType Name="Year">
+          <Key>
+            <PropertyRef Name="SysId" />
+          </Key>
+          <Property Name="SysId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Value" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="CreatedBy" Type="Int32" />
+          <Property Name="IsDeleted" Type="Int32" />
+          <NavigationProperty Name="Sections" Relationship="SMSModel.FK_Sections_Year" FromRole="Year" ToRole="Section" />
+          <NavigationProperty Name="Students" Relationship="SMSModel.FK_Students_Year" FromRole="Year" ToRole="Student" />
+          <NavigationProperty Name="Courses" Relationship="SMSModel.FK_Subjects_Year" FromRole="Year" ToRole="Course" />
+          <NavigationProperty Name="Teaches" Relationship="SMSModel.FK_Teaches_Year" FromRole="Year" ToRole="Teach" />
+          <NavigationProperty Name="Assesments" Relationship="SMSModel.FK_Assesment_Year" FromRole="Year" ToRole="Assesment" />
+        </EntityType>
+        <Association Name="FK_RoleMenu_MenuItems">
+          <End Type="SMSModel.MenuItem" Role="MenuItem" Multiplicity="0..1" />
+          <End Type="SMSModel.RoleMenu" Role="RoleMenu" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MenuItem">
+              <PropertyRef Name="SysId" />
+            </Principal>
+            <Dependent Role="RoleMenu">
+              <PropertyRef Name="MenuId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_RoleMenu_Role">
+          <End Type="SMSModel.Role" Role="Role" Multiplicity="0..1" />
+          <End Type="SMSModel.RoleMenu" Role="RoleMenu" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Role">
+              <PropertyRef Name="SysId" />
+            </Principal>
+            <Dependent Role="RoleMenu">
+              <PropertyRef Name="RoleId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Sections_Year">
+          <End Type="SMSModel.Year" Role="Year" Multiplicity="0..1" />
+          <End Type="SMSModel.Section" Role="Section" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Year">
+              <PropertyRef Name="SysId" />
+            </Principal>
+            <Dependent Role="Section">
+              <PropertyRef Name="YearId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="Student">
+          <Key>
+            <PropertyRef Name="SysId" />
+          </Key>
+          <Property Name="SysId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Id" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="FirstName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="LastName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="FullName" Type="String" MaxLength="101" FixedLength="false" Unicode="true" annotation:StoreGeneratedPattern="Computed" />
+          <Property Name="UserName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Phone" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Password" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="SectionID" Type="Int32" />
+          <Property Name="YearID" Type="Int32" />
+          <Property Name="CreatedBy" Type="Int32" />
+          <Property Name="IsDeleted" Type="Int32" />
+          <Property Name="Role" Type="Int32" />
+          <Property Name="Photo" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="DepartmentID" Type="Int32" />
+          <NavigationProperty Name="Department" Relationship="SMSModel.FK_Students_Department" FromRole="Student" ToRole="Department" />
+          <NavigationProperty Name="Role1" Relationship="SMSModel.FK_Students_Role" FromRole="Student" ToRole="Role" />
+          <NavigationProperty Name="Section" Relationship="SMSModel.FK_Students_Sections" FromRole="Student" ToRole="Section" />
+          <NavigationProperty Name="Year" Relationship="SMSModel.FK_Students_Year" FromRole="Student" ToRole="Year" />
+          <NavigationProperty Name="SubmitAssignments" Relationship="SMSModel.FK_SubmitAssignment_Students" FromRole="Student" ToRole="SubmitAssignment" />
+          <NavigationProperty Name="Results" Relationship="SMSModel.FK_Results_Students" FromRole="Student" ToRole="Result" />
+          <NavigationProperty Name="Accounts" Relationship="SMSModel.FK_Account_Students" FromRole="Student" ToRole="Account" />
+          <NavigationProperty Name="Teacher" Relationship="SMSModel.FK_Students_Teachers" FromRole="Student" ToRole="Teacher" />
+          <NavigationProperty Name="Messages" Relationship="SMSModel.FK_Messages_Students" FromRole="Student" ToRole="Message" />
+          </EntityType>
+        <Association Name="FK_Students_Department">
+          <End Type="SMSModel.Department" Role="Department" Multiplicity="0..1" />
+          <End Type="SMSModel.Student" Role="Student" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Department">
+              <PropertyRef Name="SysId" />
+            </Principal>
+            <Dependent Role="Student">
+              <PropertyRef Name="DepartmentID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Students_Role">
+          <End Type="SMSModel.Role" Role="Role" Multiplicity="0..1" />
+          <End Type="SMSModel.Student" Role="Student" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Role">
+              <PropertyRef Name="SysId" />
+            </Principal>
+            <Dependent Role="Student">
+              <PropertyRef Name="Role" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Students_Sections">
+          <End Type="SMSModel.Section" Role="Section" Multiplicity="0..1" />
+          <End Type="SMSModel.Student" Role="Student" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Section">
+              <PropertyRef Name="SysId" />
+            </Principal>
+            <Dependent Role="Student">
+              <PropertyRef Name="SectionID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Students_Year">
+          <End Type="SMSModel.Year" Role="Year" Multiplicity="0..1" />
+          <End Type="SMSModel.Student" Role="Student" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Year">
+              <PropertyRef Name="SysId" />
+            </Principal>
+            <Dependent Role="Student">
+              <PropertyRef Name="YearID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SubmitAssignment_Students">
+          <End Type="SMSModel.Student" Role="Student" Multiplicity="0..1" />
+          <End Type="SMSModel.SubmitAssignment" Role="SubmitAssignment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Student">
+              <PropertyRef Name="SysId" />
+            </Principal>
+            <Dependent Role="SubmitAssignment">
+              <PropertyRef Name="StudentId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="Course">
+          <Key>
+            <PropertyRef Name="SysId" />
+          </Key>
+          <Property Name="SysId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="YearId" Type="Int32" />
+          <Property Name="CreatedBy" Type="Int32" />
+          <Property Name="IsDeleted" Type="Int32" />
+          <Property Name="DepartmentID" Type="Int32" />
+          <NavigationProperty Name="Department" Relationship="SMSModel.FK_Course_Department" FromRole="Course" ToRole="Department" />
+          <NavigationProperty Name="Year" Relationship="SMSModel.FK_Subjects_Year" FromRole="Course" ToRole="Year" />
+          <NavigationProperty Name="Teaches" Relationship="SMSModel.FK_Teaches_Course" FromRole="Course" ToRole="Teach" />
+          <NavigationProperty Name="Teacher" Relationship="SMSModel.FK_Course_Teachers" FromRole="Course" ToRole="Teacher" />
+          <NavigationProperty Name="Assesments" Relationship="SMSModel.FK_Assesment_Course" FromRole="Course" ToRole="Assesment" />
+        </EntityType>
+        <Association Name="FK_Course_Department">
+          <End Type="SMSModel.Department" Role="Department" Multiplicity="0..1" />
+          <End Type="SMSModel.Course" Role="Course" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Department">
+              <PropertyRef Name="SysId" />
+            </Principal>
+            <Dependent Role="Course">
+              <PropertyRef Name="DepartmentID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Subjects_Year">
+          <End Type="SMSModel.Year" Role="Year" Multiplicity="0..1" />
+          <End Type="SMSModel.Course" Role="Course" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Year">
+              <PropertyRef Name="SysId" />
+            </Principal>
+            <Dependent Role="Course">
+              <PropertyRef Name="YearId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="Result">
+          <Key>
+            <PropertyRef Name="SysId" />
+          </Key>
+          <Property Name="SysId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="AssessmentID" Type="Int32" />
+          <Property Name="StudentID" Type="Int32" />
+          <Property Name="Mark" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="CreatedBy" Type="Int32" />
+          <Property Name="IsDeleted" Type="Int32" />
+          <NavigationProperty Name="Student" Relationship="SMSModel.FK_Results_Students" FromRole="Result" ToRole="Student" />
+          <NavigationProperty Name="Teacher" Relationship="SMSModel.FK_Results_Teachers" FromRole="Result" ToRole="Teacher" />
+          <NavigationProperty Name="Assesment" Relationship="SMSModel.FK_Results_Assesment" FromRole="Result" ToRole="Assesment" />
+        </EntityType>
+        <Association Name="FK_Results_Students">
+          <End Type="SMSModel.Student" Role="Student" Multiplicity="0..1" />
+          <End Type="SMSModel.Result" Role="Result" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Student">
+              <PropertyRef Name="SysId" />
+            </Principal>
+            <Dependent Role="Result">
+              <PropertyRef Name="StudentID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="Teach">
+          <Key>
+            <PropertyRef Name="SysId" />
+          </Key>
+          <Property Name="SysId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="TeacherId" Type="Int32" />
+          <Property Name="CourseId" Type="Int32" />
+          <Property Name="DepartmentId" Type="Int32" />
+          <Property Name="YearId" Type="Int32" />
+          <Property Name="SectionId" Type="Int32" />
+          <NavigationProperty Name="Course" Relationship="SMSModel.FK_Teaches_Course" FromRole="Teach" ToRole="Course" />
+          <NavigationProperty Name="Department" Relationship="SMSModel.FK_Teaches_Department" FromRole="Teach" ToRole="Department" />
+          <NavigationProperty Name="Section" Relationship="SMSModel.FK_Teaches_Sections" FromRole="Teach" ToRole="Section" />
+          <NavigationProperty Name="Year" Relationship="SMSModel.FK_Teaches_Year" FromRole="Teach" ToRole="Year" />
+          <NavigationProperty Name="Teacher" Relationship="SMSModel.FK_Teaches_Teachers" FromRole="Teach" ToRole="Teacher" />
+        </EntityType>
+        <Association Name="FK_Teaches_Course">
+          <End Type="SMSModel.Course" Role="Course" Multiplicity="0..1" />
+          <End Type="SMSModel.Teach" Role="Teach" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Course">
+              <PropertyRef Name="SysId" />
+            </Principal>
+            <Dependent Role="Teach">
+              <PropertyRef Name="CourseId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Teaches_Department">
+          <End Type="SMSModel.Department" Role="Department" Multiplicity="0..1" />
+          <End Type="SMSModel.Teach" Role="Teach" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Department">
+              <PropertyRef Name="SysId" />
+            </Principal>
+            <Dependent Role="Teach">
+              <PropertyRef Name="DepartmentId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Teaches_Sections">
+          <End Type="SMSModel.Section" Role="Section" Multiplicity="0..1" />
+          <End Type="SMSModel.Teach" Role="Teach" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Section">
+              <PropertyRef Name="SysId" />
+            </Principal>
+            <Dependent Role="Teach">
+              <PropertyRef Name="SectionId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Teaches_Year">
+          <End Type="SMSModel.Year" Role="Year" Multiplicity="0..1" />
+          <End Type="SMSModel.Teach" Role="Teach" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Year">
+              <PropertyRef Name="SysId" />
+            </Principal>
+            <Dependent Role="Teach">
+              <PropertyRef Name="YearId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="Account">
+          <Key>
+            <PropertyRef Name="SysId" />
+          </Key>
+          <Property Name="SysId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="TeacherID" Type="Int32" />
+          <Property Name="StudentID" Type="Int32" />
+          <Property Name="Password" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="RoleID" Type="Int32" />
+          <Property Name="CreatedBy" Type="Int32" />
+          <Property Name="IsDeleted" Type="Int32" />
+          <Property Name="Salt" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Role" Relationship="SMSModel.FK_Account_Role" FromRole="Account" ToRole="Role" />
+          <NavigationProperty Name="Student" Relationship="SMSModel.FK_Account_Students" FromRole="Account" ToRole="Student" />
+          <NavigationProperty Name="Teacher" Relationship="SMSModel.FK_Account_Teachers" FromRole="Account" ToRole="Teacher" />
+        </EntityType>
+        <Association Name="FK_Account_Role">
+          <End Type="SMSModel.Role" Role="Role" Multiplicity="0..1" />
+          <End Type="SMSModel.Account" Role="Account" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Role">
+              <PropertyRef Name="SysId" />
+            </Principal>
+            <Dependent Role="Account">
+              <PropertyRef Name="RoleID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Account_Students">
+          <End Type="SMSModel.Student" Role="Student" Multiplicity="0..1" />
+          <End Type="SMSModel.Account" Role="Account" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Student">
+              <PropertyRef Name="SysId" />
+            </Principal>
+            <Dependent Role="Account">
+              <PropertyRef Name="StudentID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="Teacher">
+          <Key>
+            <PropertyRef Name="SysId" />
+          </Key>
+          <Property Name="SysId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Id" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="FirstName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="LastName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="FullName" Type="String" MaxLength="101" FixedLength="false" Unicode="true" annotation:StoreGeneratedPattern="Computed" />
+          <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="CreatedBy" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="IsDeleted" Type="Int32" />
+          <Property Name="Role" Type="Int32" />
+          <Property Name="Photo" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="Password" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Accounts" Relationship="SMSModel.FK_Account_Teachers" FromRole="Teacher" ToRole="Account" />
+          <NavigationProperty Name="Courses" Relationship="SMSModel.FK_Course_Teachers" FromRole="Teacher" ToRole="Course" />
+          <NavigationProperty Name="Results" Relationship="SMSModel.FK_Results_Teachers" FromRole="Teacher" ToRole="Result" />
+          <NavigationProperty Name="Role1" Relationship="SMSModel.FK_Teachers_Role" FromRole="Teacher" ToRole="Role" />
+          <NavigationProperty Name="Students" Relationship="SMSModel.FK_Students_Teachers" FromRole="Teacher" ToRole="Student" />
+          <NavigationProperty Name="Teaches" Relationship="SMSModel.FK_Teaches_Teachers" FromRole="Teacher" ToRole="Teach" />
+          <NavigationProperty Name="Assesments" Relationship="SMSModel.FK_Assesment_Teachers" FromRole="Teacher" ToRole="Assesment" />
+          <NavigationProperty Name="Messages" Relationship="SMSModel.FK_Messages_Teachers" FromRole="Teacher" ToRole="Message" />
+        </EntityType>
+        <Association Name="FK_Account_Teachers">
+          <End Type="SMSModel.Teacher" Role="Teacher" Multiplicity="0..1" />
+          <End Type="SMSModel.Account" Role="Account" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Teacher">
+              <PropertyRef Name="SysId" />
+            </Principal>
+            <Dependent Role="Account">
+              <PropertyRef Name="TeacherID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Course_Teachers">
+          <End Type="SMSModel.Teacher" Role="Teacher" Multiplicity="0..1" />
+          <End Type="SMSModel.Course" Role="Course" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Teacher">
+              <PropertyRef Name="SysId" />
+            </Principal>
+            <Dependent Role="Course">
+              <PropertyRef Name="CreatedBy" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Results_Teachers">
+          <End Type="SMSModel.Teacher" Role="Teacher" Multiplicity="0..1" />
+          <End Type="SMSModel.Result" Role="Result" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Teacher">
+              <PropertyRef Name="SysId" />
+            </Principal>
+            <Dependent Role="Result">
+              <PropertyRef Name="CreatedBy" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Teachers_Role">
+          <End Type="SMSModel.Role" Role="Role" Multiplicity="0..1" />
+          <End Type="SMSModel.Teacher" Role="Teacher" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Role">
+              <PropertyRef Name="SysId" />
+            </Principal>
+            <Dependent Role="Teacher">
+              <PropertyRef Name="Role" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Students_Teachers">
+          <End Type="SMSModel.Teacher" Role="Teacher" Multiplicity="0..1" />
+          <End Type="SMSModel.Student" Role="Student" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Teacher">
+              <PropertyRef Name="SysId" />
+            </Principal>
+            <Dependent Role="Student">
+              <PropertyRef Name="CreatedBy" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Teaches_Teachers">
+          <End Type="SMSModel.Teacher" Role="Teacher" Multiplicity="0..1" />
+          <End Type="SMSModel.Teach" Role="Teach" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Teacher">
+              <PropertyRef Name="SysId" />
+            </Principal>
+            <Dependent Role="Teach">
+              <PropertyRef Name="TeacherId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="Assesment">
+          <Key>
+            <PropertyRef Name="SysId" />
+          </Key>
+          <Property Name="SysId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Id" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Type" Type="Int32" />
+          <Property Name="Time" Type="Time" Precision="7" />
+          <Property Name="GivenDate" Type="DateTime" Precision="0" />
+          <Property Name="DeadLine" Type="DateTime" Precision="0" />
+          <Property Name="SectionID" Type="Int32" />
+          <Property Name="DepartmentID" Type="Int32" />
+          <Property Name="CourseID" Type="Int32" />
+          <Property Name="YearID" Type="Int32" />
+          <Property Name="Title" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="TotalMark" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="CreatedBy" Type="Int32" />
+          <Property Name="IsDeleted" Type="Int32" Nullable="false" />
+          <Property Name="Attachment" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="AssesmentType" Relationship="SMSModel.FK_Assesment_AssasementTypes" FromRole="Assesment" ToRole="AssesmentType" />
+          <NavigationProperty Name="Course" Relationship="SMSModel.FK_Assesment_Course" FromRole="Assesment" ToRole="Course" />
+          <NavigationProperty Name="Department" Relationship="SMSModel.FK_Assesment_Department" FromRole="Assesment" ToRole="Department" />
+          <NavigationProperty Name="Section" Relationship="SMSModel.FK_Assesment_Sections" FromRole="Assesment" ToRole="Section" />
+          <NavigationProperty Name="Teacher" Relationship="SMSModel.FK_Assesment_Teachers" FromRole="Assesment" ToRole="Teacher" />
+          <NavigationProperty Name="Year" Relationship="SMSModel.FK_Assesment_Year" FromRole="Assesment" ToRole="Year" />
+          <NavigationProperty Name="Results" Relationship="SMSModel.FK_Results_Assesment" FromRole="Assesment" ToRole="Result" />
+          <NavigationProperty Name="SubmitAssignments" Relationship="SMSModel.FK_SubmitAssignment_Assesment" FromRole="Assesment" ToRole="SubmitAssignment" />
+        </EntityType>
+        <Association Name="FK_Assesment_AssasementTypes">
+          <End Type="SMSModel.AssesmentType" Role="AssesmentType" Multiplicity="0..1" />
+          <End Type="SMSModel.Assesment" Role="Assesment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AssesmentType">
+              <PropertyRef Name="SysId" />
+            </Principal>
+            <Dependent Role="Assesment">
+              <PropertyRef Name="Type" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Assesment_Course">
+          <End Type="SMSModel.Course" Role="Course" Multiplicity="0..1" />
+          <End Type="SMSModel.Assesment" Role="Assesment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Course">
+              <PropertyRef Name="SysId" />
+            </Principal>
+            <Dependent Role="Assesment">
+              <PropertyRef Name="CourseID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Assesment_Department">
+          <End Type="SMSModel.Department" Role="Department" Multiplicity="0..1" />
+          <End Type="SMSModel.Assesment" Role="Assesment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Department">
+              <PropertyRef Name="SysId" />
+            </Principal>
+            <Dependent Role="Assesment">
+              <PropertyRef Name="DepartmentID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Assesment_Sections">
+          <End Type="SMSModel.Section" Role="Section" Multiplicity="0..1" />
+          <End Type="SMSModel.Assesment" Role="Assesment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Section">
+              <PropertyRef Name="SysId" />
+            </Principal>
+            <Dependent Role="Assesment">
+              <PropertyRef Name="SectionID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Assesment_Teachers">
+          <End Type="SMSModel.Teacher" Role="Teacher" Multiplicity="0..1" />
+          <End Type="SMSModel.Assesment" Role="Assesment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Teacher">
+              <PropertyRef Name="SysId" />
+            </Principal>
+            <Dependent Role="Assesment">
+              <PropertyRef Name="CreatedBy" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Assesment_Year">
+          <End Type="SMSModel.Year" Role="Year" Multiplicity="0..1" />
+          <End Type="SMSModel.Assesment" Role="Assesment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Year">
+              <PropertyRef Name="SysId" />
+            </Principal>
+            <Dependent Role="Assesment">
+              <PropertyRef Name="YearID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Results_Assesment">
+          <End Type="SMSModel.Assesment" Role="Assesment" Multiplicity="0..1" />
+          <End Type="SMSModel.Result" Role="Result" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Assesment">
+              <PropertyRef Name="SysId" />
+            </Principal>
+            <Dependent Role="Result">
+              <PropertyRef Name="AssessmentID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SubmitAssignment_Assesment">
+          <End Type="SMSModel.Assesment" Role="Assesment" Multiplicity="0..1" />
+          <End Type="SMSModel.SubmitAssignment" Role="SubmitAssignment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Assesment">
+              <PropertyRef Name="SysId" />
+            </Principal>
+            <Dependent Role="SubmitAssignment">
+              <PropertyRef Name="AssesmentId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="Message">
+          <Key>
+            <PropertyRef Name="SysId" />
+          </Key>
+          <Property Name="SysId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="From" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ToStudents" Type="Int32" />
+          <Property Name="ToTeachers" Type="Int32" />
+          <Property Name="Subject" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="Body" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Status" Type="Int32" />
+          <Property Name="SentDate" Type="DateTime" Precision="0" />
+          <Property Name="IsDeleted" Type="Int32" />
+          <NavigationProperty Name="Student" Relationship="SMSModel.FK_Messages_Students" FromRole="Message" ToRole="Student" />
+          <NavigationProperty Name="Teacher" Relationship="SMSModel.FK_Messages_Teachers" FromRole="Message" ToRole="Teacher" />
+        </EntityType>
+        <Association Name="FK_Messages_Students">
+          <End Type="SMSModel.Student" Role="Student" Multiplicity="0..1" />
+          <End Type="SMSModel.Message" Role="Message" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Student">
+              <PropertyRef Name="SysId" />
+            </Principal>
+            <Dependent Role="Message">
+              <PropertyRef Name="ToStudents" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Messages_Teachers">
+          <End Type="SMSModel.Teacher" Role="Teacher" Multiplicity="0..1" />
+          <End Type="SMSModel.Message" Role="Message" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Teacher">
+              <PropertyRef Name="SysId" />
+            </Principal>
+            <Dependent Role="Message">
+              <PropertyRef Name="ToTeachers" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="SMSModelStoreContainer" CdmEntityContainer="SMSEntities">
+          <EntitySetMapping Name="AssesmentTypes">
+            <EntityTypeMapping TypeName="SMSModel.AssesmentType">
+              <MappingFragment StoreEntitySet="AssesmentTypes">
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="SysId" ColumnName="SysId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Departments">
+            <EntityTypeMapping TypeName="SMSModel.Department">
+              <MappingFragment StoreEntitySet="Department">
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="SysId" ColumnName="SysId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="MenuItems">
+            <EntityTypeMapping TypeName="SMSModel.MenuItem">
+              <MappingFragment StoreEntitySet="MenuItems">
+                <ScalarProperty Name="Icon" ColumnName="Icon" />
+                <ScalarProperty Name="Link" ColumnName="Link" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="SysId" ColumnName="SysId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Roles">
+            <EntityTypeMapping TypeName="SMSModel.Role">
+              <MappingFragment StoreEntitySet="Role">
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="SysId" ColumnName="SysId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="RoleMenus">
+            <EntityTypeMapping TypeName="SMSModel.RoleMenu">
+              <MappingFragment StoreEntitySet="RoleMenu">
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+                <ScalarProperty Name="MenuId" ColumnName="MenuId" />
+                <ScalarProperty Name="RoleId" ColumnName="RoleId" />
+                <ScalarProperty Name="SysId" ColumnName="SysId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Sections">
+            <EntityTypeMapping TypeName="SMSModel.Section">
+              <MappingFragment StoreEntitySet="Sections">
+                <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="YearId" ColumnName="YearId" />
+                <ScalarProperty Name="Value" ColumnName="Value" />
+                <ScalarProperty Name="SysId" ColumnName="SysId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SubmitAssignments">
+            <EntityTypeMapping TypeName="SMSModel.SubmitAssignment">
+              <MappingFragment StoreEntitySet="SubmitAssignment">
+                <ScalarProperty Name="SubmissionDate" ColumnName="SubmissionDate" />
+                <ScalarProperty Name="FilePath" ColumnName="FilePath" />
+                <ScalarProperty Name="AssesmentId" ColumnName="AssesmentId" />
+                <ScalarProperty Name="StudentId" ColumnName="StudentId" />
+                <ScalarProperty Name="SysId" ColumnName="SysId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SuperAdmins">
+            <EntityTypeMapping TypeName="SMSModel.SuperAdmin">
+              <MappingFragment StoreEntitySet="SuperAdmin">
+                <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
+                <ScalarProperty Name="SysId" ColumnName="SysId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Years">
+            <EntityTypeMapping TypeName="SMSModel.Year">
+              <MappingFragment StoreEntitySet="Year">
+                <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="Value" ColumnName="Value" />
+                <ScalarProperty Name="SysId" ColumnName="SysId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Students">
+            <EntityTypeMapping TypeName="SMSModel.Student">
+              <MappingFragment StoreEntitySet="Students">
+                <ScalarProperty Name="DepartmentID" ColumnName="DepartmentID" />
+                <ScalarProperty Name="Photo" ColumnName="Photo" />
+                <ScalarProperty Name="Role" ColumnName="Role" />
+                <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="YearID" ColumnName="YearID" />
+                <ScalarProperty Name="SectionID" ColumnName="SectionID" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="Phone" ColumnName="Phone" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
+                <ScalarProperty Name="FullName" ColumnName="FullName" />
+                <ScalarProperty Name="LastName" ColumnName="LastName" />
+                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="SysId" ColumnName="SysId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Courses">
+            <EntityTypeMapping TypeName="SMSModel.Course">
+              <MappingFragment StoreEntitySet="Course">
+                <ScalarProperty Name="DepartmentID" ColumnName="DepartmentID" />
+                <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="YearId" ColumnName="YearId" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="SysId" ColumnName="SysId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Results">
+            <EntityTypeMapping TypeName="SMSModel.Result">
+              <MappingFragment StoreEntitySet="Results">
+                <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="Mark" ColumnName="Mark" />
+                <ScalarProperty Name="StudentID" ColumnName="StudentID" />
+                <ScalarProperty Name="AssessmentID" ColumnName="AssessmentID" />
+                <ScalarProperty Name="SysId" ColumnName="SysId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Teaches">
+            <EntityTypeMapping TypeName="SMSModel.Teach">
+              <MappingFragment StoreEntitySet="Teaches">
+                <ScalarProperty Name="SectionId" ColumnName="SectionId" />
+                <ScalarProperty Name="YearId" ColumnName="YearId" />
+                <ScalarProperty Name="DepartmentId" ColumnName="DepartmentId" />
+                <ScalarProperty Name="CourseId" ColumnName="CourseId" />
+                <ScalarProperty Name="TeacherId" ColumnName="TeacherId" />
+                <ScalarProperty Name="SysId" ColumnName="SysId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Accounts">
+            <EntityTypeMapping TypeName="SMSModel.Account">
+              <MappingFragment StoreEntitySet="Account">
+                <ScalarProperty Name="Salt" ColumnName="Salt" />
+                <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="RoleID" ColumnName="RoleID" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="StudentID" ColumnName="StudentID" />
+                <ScalarProperty Name="TeacherID" ColumnName="TeacherID" />
+                <ScalarProperty Name="SysId" ColumnName="SysId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Teachers">
+            <EntityTypeMapping TypeName="SMSModel.Teacher">
+              <MappingFragment StoreEntitySet="Teachers">
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="Photo" ColumnName="Photo" />
+                <ScalarProperty Name="Role" ColumnName="Role" />
+                <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="FullName" ColumnName="FullName" />
+                <ScalarProperty Name="LastName" ColumnName="LastName" />
+                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="SysId" ColumnName="SysId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Assesments">
+            <EntityTypeMapping TypeName="SMSModel.Assesment">
+              <MappingFragment StoreEntitySet="Assesment">
+                <ScalarProperty Name="Attachment" ColumnName="Attachment" />
+                <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="TotalMark" ColumnName="TotalMark" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="YearID" ColumnName="YearID" />
+                <ScalarProperty Name="CourseID" ColumnName="CourseID" />
+                <ScalarProperty Name="DepartmentID" ColumnName="DepartmentID" />
+                <ScalarProperty Name="SectionID" ColumnName="SectionID" />
+                <ScalarProperty Name="DeadLine" ColumnName="DeadLine" />
+                <ScalarProperty Name="GivenDate" ColumnName="GivenDate" />
+                <ScalarProperty Name="Time" ColumnName="Time" />
+                <ScalarProperty Name="Type" ColumnName="Type" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="SysId" ColumnName="SysId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Messages">
+            <EntityTypeMapping TypeName="SMSModel.Message">
+              <MappingFragment StoreEntitySet="Messages">
+                <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+                <ScalarProperty Name="SentDate" ColumnName="SentDate" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="Body" ColumnName="Body" />
+                <ScalarProperty Name="Subject" ColumnName="Subject" />
+                <ScalarProperty Name="ToTeachers" ColumnName="ToTeachers" />
+                <ScalarProperty Name="ToStudents" ColumnName="ToStudents" />
+                <ScalarProperty Name="From" ColumnName="From" />
+                <ScalarProperty Name="SysId" ColumnName="SysId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

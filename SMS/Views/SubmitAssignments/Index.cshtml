@@ -1,0 +1,72 @@
+﻿@model IEnumerable<SMS.Models.SubmitAssignment>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Index</h2>
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Assesment)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Student)
+        </th>
+        <th>
+            File
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.SubmissionDate)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Assesment.Course.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Student.FullName)
+            </td>
+            <td> 
+                @Html.ActionLink("Download", "Download", new { filePath = item.FilePath },new { @class= "fa fa-download" })
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.SubmissionDate)
+            </td>
+            <td>
+                @Html.ActionLink(" ", "Edit", new { id = item.SysId }, new { @class = "btn btn-primary li fa fa-pen" })
+                @Html.ActionLink(" ", "Details", new { id = item.SysId }, new { @class = "btn  btn-success li fa fa-eye" })
+                @Html.ActionLink(" ", "Delete", new { id = item.SysId }, new { @class = "btn btn-danger li js-delete fa fa-trash" })
+            </td>
+        </tr>
+    }
+
+</table>
+@*
+    <script>
+        function download(path) {
+            $.ajax({
+                url: path,
+                success: function (responce) { alert(responce.data) },
+                error: function (responce) { alert(responce.data) }
+            });
+        }
+        <button onclick="popup()">Add To Cart</button>
+        function popup() {
+            $.ajax({
+                url: "@Url.Action("Download")",
+                data: { path: "C:\Users\Lucky\source\repos\SMS\SMS\Content\SubmittedFiles\2-19-abdulhakim.JPG" },
+                success: function () { alert("success"); },
+                error: function () { alert("error"); }
+            });
+            return false;
+        }
+
+
+    </script>*@

@@ -1,0 +1,81 @@
+﻿@model IEnumerable<SMS.Models.Assesment>
+
+@{
+    ViewBag.Title = "AssesmentsUnderCourse";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@Html.ActionLink("Back", "Index", new { }, new { @class = "btn btn-success" })
+<hr />
+<h2>Assesments</h2>
+
+<table class="table">
+    <tr>
+        <th>
+            Given Date
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DeadLine)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Title)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Description)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.TotalMark)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.AssesmentType)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Attachment)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.GivenDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DeadLine)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Title)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Description)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TotalMark)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.AssesmentType.Name)
+            </td>
+            <td>
+                @{
+                    if (item.Attachment != null)
+                    {
+                        @Html.ActionLink("Attachement", "Download", new { filePath = item.Attachment }, new { @class = "fa fa-download" })
+                    }
+
+                }
+
+            </td>
+            <td>
+                @{
+                    string assesmentType = item.AssesmentType.Name;
+                    if (assesmentType != "Test")
+                    {
+                        <a href="~/SubmitAssignments/Create?assesmentID=@item.SysId" class="btn btn-block btn-primary li" style="margin-bottom:10px;width:95%"><i class="fa-send"></i>Submit</a>
+                    }
+                }
+            </td>
+        </tr>
+    }
+
+</table>

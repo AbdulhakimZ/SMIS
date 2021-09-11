@@ -1,0 +1,35 @@
+﻿@model SMS.Models.Year
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Year</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            Year
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Value)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CreatedBy)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CreatedBy)
+        </dd>
+         
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.SysId }, new { @class = "btn btn-success" }) |
+    @Html.ActionLink("Back to List", "Index", new { }, new { @class = "btn btn-primary" })
+</p>

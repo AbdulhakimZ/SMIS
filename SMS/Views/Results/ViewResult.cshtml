@@ -1,0 +1,55 @@
+﻿@model IEnumerable<SMS.Models.Result>
+
+@{
+    ViewBag.Title = "ViewResult";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>ViewResult</h2>
+
+<table id="tblResult" class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Mark)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Assesment.TotalMark)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Assesment.Title)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Teacher)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Mark)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Assesment.TotalMark)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Assesment.Title)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Teacher.FullName)
+                </td>
+                <td>
+                    @Html.ActionLink("Details", "Details", new { id = item.SysId })
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+<script>
+    $(document).ready(function () {
+        $("#tblResult").DataTable();
+    })
+</script>

@@ -1,0 +1,158 @@
+﻿@model IEnumerable<SMS.Models.Assesment>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create", new { }, new { @class = "btn btn-primary" })
+</p>
+<style>
+    td {
+        overflow: hidden;
+        white-space: nowrap;
+    }
+
+    table {
+        table-layout: fixed;
+        overflow-x: hidden;
+    }
+
+    th {
+        overflow-x: hidden;
+    }
+  body
+    {
+        color: #000;
+    }
+</style>
+<table id="tblAssesment" class="table table-bordered table-striped">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Time)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.GivenDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DeadLine)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Title)
+            </th>
+            <th style="table-layout:fixed;">
+                @Html.DisplayNameFor(model => model.Description)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.TotalMark)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.AssesmentType)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Course)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Department)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Section)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Year)
+            </th>
+            <th style="width:25%">Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        @if (Model != null)
+        {
+            foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Time)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.GivenDate)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.DeadLine)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Title)
+                    </td>
+                    <td class="text-truncate" style="overflow:hidden;">
+                        @Html.DisplayFor(modelItem => item.Description)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.TotalMark)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.AssesmentType.Name)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Course.Name)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Department.Name)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Section.Value)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Year.Value)
+                    </td>
+                    <td overflow:visible">
+                        <div>
+                            <ul style="list-style-type: none;">
+
+                                <li style="float:left;" title="Evaluate" data-toggle="tooltip" data-placement="top">
+                                    <a href="../Results/Index?id=@item.SysId" class="btn btn-block btn-info li js-delete" style="margin-bottom:10px;width:95%"><i class="fas fa-calculator"></i></a>
+                                </li>
+                                <li style="float:left;">
+                                    <a title="Edit" data-toggle="tooltip" data-placement="top" href="../Assesments/Edit?id=@item.SysId" class="btn btn-block btn-primary li" style="margin-bottom:10px;width:95%"><i class="fa fa-pen"></i></a>
+
+                                </li>
+                                <li style="float:left;">
+                                    <a title="Detail" data-toggle="tooltip" data-placement="bottom" href="../Assesments/Details?id=@item.SysId" class="btn btn-block btn-success li" style="margin-bottom:10px;width:95%"><i class="fa fa-eye"></i></a>
+                                </li>
+                                <li style="float:left;">
+                                    <a title="Delete" data-toggle="tooltip" data-placement="left" href="../Assesments/Delete?id=@item.SysId" class="btn btn-block btn-danger li js-delete" style="margin-bottom:10px;width:95%"><i class="fa fa-trash"></i></a>
+                                </li>
+                                <li style="float:left;">
+                                    @{
+                                        string assesmentType = item.AssesmentType.Name;
+                                        if (assesmentType != "Test")
+                                        {
+                                            <a href="../SubmitAssignments/Index?assesmentID=@item.SysId" class="btn btn-block btn-info li js-delete" style="margin-bottom:10px;width:95%"><i class="fa fa-download"></i></a>
+                                        }
+                                    }
+                                </li>
+                            </ul>
+                        </div>
+                    </td>
+                </tr>
+             }
+         }
+    </tbody>
+   
+</table>
+
+@section scripts{
+    <script>
+        $(function () {
+            $('[data-toggle="tooltip"]').tooltip()
+        });
+        $(document).ready(function () {
+            $("#tblAssesment").DataTable({
+                "order": [[2, "desc"]]
+            });
+
+        });
+    </script>
+}

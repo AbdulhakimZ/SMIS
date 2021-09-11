@@ -1,0 +1,86 @@
+﻿@model IEnumerable<SMS.Models.Assesment>
+
+@{
+    ViewBag.Title = "AllAssignments";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<hr />
+<h2>All @ViewBag.Head</h2>
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.GivenDate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DeadLine)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Title)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Description)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.TotalMark)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.AssesmentType)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Course)
+        </th>
+        <th>
+            Instructor
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Attachment)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.GivenDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DeadLine)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Title)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Description)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TotalMark)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.AssesmentType.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Course.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Teacher.FullName)
+            </td>
+            <td>
+                @Html.ActionLink("Download", "Download", new { filePath = item.Attachment }, new { @class = "fa fa-download" })
+            </td>
+            <td>
+                @{
+                    string assesmentType = item.AssesmentType.Name;
+                    if (assesmentType == "Assignment")
+                    {
+                        <a href="~/SubmitAssignments/Create?assesmentID=@item.SysId" class="btn btn-block btn-primary li" style="margin-bottom:10px;width:95%"><i class="fa-send"></i>Submit</a>
+                    }
+                }
+            </td>
+        </tr>
+    }
+
+</table>
+
+@Html.ActionLink("Back", "Index", new { }, new { @class = "btn btn-success" })

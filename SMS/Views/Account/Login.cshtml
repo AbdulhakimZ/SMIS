@@ -1,0 +1,97 @@
+﻿@using SMS.Models
+@model Account
+@{
+    ViewBag.Title = "Log in";
+    Layout = null;
+}
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+
+    <!-- Theme style -->
+    <link rel="stylesheet" href="~/Content/plugins/dist/css/adminlte.min.css">
+    <style>
+        .container {
+            position: relative;
+            width: 284px;
+            padding: 10px 10px 20px 10px;
+            border: 1px solid #BFBFBF;
+            background-color: white;
+            box-shadow: 12px 12px 5px #aaaaaa;
+            width: 40%;
+        }
+    </style>
+    @*{
+            FormsAuthentication.SignOut();
+            Session.Clear();
+            Session.RemoveAll();
+            Session.Abandon();
+            Session.Contents.RemoveAll();
+        }*@
+</head>
+<body style="background-color:#dee2e7">
+    <div class="container center border-dark" style="margin-top: 7%;">
+        <h3 class="centet"> Student Management Integrated System</h3>
+    </div>
+    <div class="container center border-dark" style="margin-top: 1%;">
+        <section id="loginForm" style="margin-left:10%;">
+            @using (Html.BeginForm("Login", "Account", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+            {
+                @Html.AntiForgeryToken()
+                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+                <div class="form-group">
+                    @Html.LabelFor(m => m.Role,"Login as", new { @class = "col-md-2 control-label" })
+                    <div class="col-md-10">
+                        @Html.DropDownListFor(m => m.RoleID, new List<SelectListItem>
+                   {
+                       new SelectListItem { Text="Teacher", Value="1"},
+                       new SelectListItem { Text="Student", Value="2"},
+                   },
+                   new {@class="form-control"}
+                       )
+                        @Html.ValidationMessageFor(m => m.RoleID, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                <hr />
+
+                <div class="form-group">
+                    @Html.LabelFor(m => m.TeacherID, "ID", new { @class = "col-md-2 control-label" })
+                    <div class="col-md-10">
+                        @Html.TextBoxFor(m => m.Student.Id, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(m => m.TeacherID, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(m => m.Password, new { @class = "col-md-2 control-label" })
+                    <div class="col-md-10">
+                        @Html.PasswordFor(m => m.Password, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(m => m.Password, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="col-md-offset-2 col-md-10">
+                        <button type="submit" class="btn btn-success"><i class="fa fa-sign"></i>Log in</button>
+                    </div>
+                </div>
+            }
+        </section>
+    </div>
+    <div class="container center border-dark" style="margin-top: 1%;">
+        <footer class="footer">
+            @{
+                string year = DateTime.Now.ToString(" yyyy");
+            }
+            <strong>Copyright &copy; @year <a href="http://www.luckyapps.ml">LuckyApps</a>.</strong>
+            All rights reserved.
+        </footer>
+    </div>
+</body>
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

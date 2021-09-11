@@ -1,0 +1,46 @@
+﻿@using SMS.Models
+@model IEnumerable<MenuItem>
+
+<div class="sidebar">
+    <!-- Sidebar user panel (optional) -->
+    <div class="user-panel mt-3 pb-3 mb-3 d-flex">
+        <div class="image">
+            @{
+                if (Session["Photo"] != null)
+                {
+                    <img src='~/@Session["Photo"]' class="img-circle" alt="User Image" />
+                }
+                else
+                {
+                    <img src="~/Content/images/default.png" class="img-circle" alt="User Image" />
+                }
+            }
+        </div>
+        <div class="info">
+            <a href="#" class="d-block">@Session["Name"] </a>
+        </div>
+    </div>
+
+    <!-- Sidebar Menu -->
+    <nav class="mt-2">
+        <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+          
+            @if (Model != null)
+            {
+                foreach (var item in Model)
+                {
+                    <li class="nav-item">
+                        <a href="~/@item.Link" class="nav-link">
+                            <i class="@item.Icon"></i>
+                            <p>
+                                @item.Name
+                                <span class="right badge badge-danger">New</span>
+                            </p>
+                        </a>
+                    </li>
+                }
+            }
+        </ul>
+    </nav>
+    <!-- /.sidebar-menu -->
+</div>

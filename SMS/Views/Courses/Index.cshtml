@@ -1,0 +1,57 @@
+﻿@model IEnumerable<SMS.Models.Course>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Index</h2>
+<p>
+    @{
+        if (Session["RoleName"].ToString() == "Admin")
+        {
+            @Html.ActionLink("Create New", "Create", new { }, new { @class = "btn btn-primary" });
+        }
+    }
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Department)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Year)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Department.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Year.Value)
+            </td>
+            <td>
+                @{
+                    if (Session["RoleName"].ToString() == "Admin")
+                    {
+                        @Html.ActionLink(" ", "Edit", new { id = item.SysId }, new { @class = "btn btn-primary li fa fa-pen" });
+                        @Html.ActionLink(" ", "Details", new { id = item.SysId }, new { @class = "btn  btn-success li fa fa-eye" });
+                        @Html.ActionLink(" ", "Delete", new { id = item.SysId }, new { @class = "btn btn-danger li js-delete fa fa-trash" });
+
+                    }
+                }
+            </td>
+        </tr>
+    }
+
+</table>

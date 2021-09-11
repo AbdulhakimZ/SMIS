@@ -1,0 +1,83 @@
+﻿@model IEnumerable<SMS.Models.Message>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Message</h2>
+
+<p>
+    @Html.ActionLink("Send New", "Create", new { }, new { @class = "btn btn-primary fa fa-send-o" })
+    @Html.ActionLink("Received", "Index", new { show = "inbox" }, new { @class = "btn btn-primary", @style = "margin-left:30%" })
+    @Html.ActionLink("Sent", "Index", new { show = "outbox" }, new { @class = "btn btn-primary" })
+    @Html.ActionLink("All", "Index", new { show = "all" }, new { @class = "btn btn-primary" })
+</p>
+
+
+<table id="tblMessage" class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Subject)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.From)
+            </th>
+            <th>
+                To
+            </th>
+            <th>
+                Date
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @{
+                        if (item.Status == 1 && !(item.From == Session["Name"].ToString()))
+                        {
+                            <span class="right badge badge-danger">New</span>
+                        }
+                    }
+                    @Html.ActionLink(item.Subject, "Details", new { id = item.SysId })
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.From)
+                </td>
+                <td>
+                    @{
+                        if (Session["RoleName"].ToString() == "Teachers")
+                        {
+                            @Html.DisplayFor(modelItem => item.Student.FullName)
+                        }
+                        else if (Session["RoleName"].ToString() == "Students")
+                        {
+                           @Html.DisplayFor(modelItem => item.Teacher.FullName) 
+                        }
+                    }
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.SentDate)
+                </td>
+                <td>
+                    @Html.ActionLink("Details", "Details", new { id = item.SysId }) |
+                    @Html.ActionLink("Delete", "Delete", new { id = item.SysId })
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+@section scripts{
+    <script>
+        $(document).ready(function () {
+            $("#tblMessage").DataTable();
+
+        });
+    </script>
+}
