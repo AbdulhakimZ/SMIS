@@ -24,7 +24,8 @@ bld/
 [Oo]bj/
 [Ll]og/
 packages/
-; Content/SubmittedFiles
+Content/SubmittedFiles/
+Content/images/
 
 # Visual Studio 2015 cache/options directory
 .vs/
